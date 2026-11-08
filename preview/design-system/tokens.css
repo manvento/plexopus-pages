@@ -1,0 +1,140 @@
+/*
+ * Plexopus Design System — foundations candidate v1 (issue #71).
+ * Source of truth for proposed brand and semantic tokens, not wired to production.
+ * Framework-neutral and dependency-free; no font binaries or remote assets.
+ * IMPORTANT: graph/map semantic colors are deliberately not overridden here.
+ */
+
+:root {
+  /* Approved brand palette — preserved from the public website. */
+  --px-brand-navy: #092431;
+  --px-brand-ink: #102d37;
+  --px-brand-teal: #007e82;
+  --px-brand-cyan: #61dfd6;
+  --px-brand-apricot: #ffb475;
+
+  /* Typography: Inter is preferred when legally provided/locally available.
+     Until the font is packaged separately, the system stack is authoritative. */
+  --px-font-sans: Inter, "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --px-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --px-text-xs: 0.75rem;       /* 12px at 16px root */
+  --px-text-sm: 0.875rem;      /* 14px */
+  --px-text-base: 1rem;        /* 16px */
+  --px-text-lg: 1.125rem;      /* 18px */
+  --px-text-xl: 1.25rem;       /* 20px */
+  --px-text-2xl: 1.5rem;       /* 24px */
+  --px-text-3xl: 2rem;         /* 32px */
+  --px-text-4xl: 2.5rem;       /* 40px */
+  --px-text-display: clamp(3rem, 5vw, 4rem);
+  --px-line-body: 1.5;
+  --px-line-heading: 1.15;
+  --px-weight-regular: 400;
+  --px-weight-medium: 500;
+  --px-weight-semibold: 600;
+  --px-weight-bold: 700;
+
+  /* Spacing scale. The default rhythm is 4px. */
+  --px-space-0: 0;
+  --px-space-1: 4px;
+  --px-space-2: 8px;
+  --px-space-3: 12px;
+  --px-space-4: 16px;
+  --px-space-5: 20px;
+  --px-space-6: 24px;
+  --px-space-8: 32px;
+  --px-space-10: 40px;
+  --px-space-12: 48px;
+  --px-space-16: 64px;
+  --px-space-20: 80px;
+
+  /* Corners and sizing. Use the pill radius only for pills/launchers. */
+  --px-radius-sm: 8px;
+  --px-radius-md: 12px;
+  --px-radius-lg: 16px;
+  --px-radius-xl: 24px;
+  --px-radius-pill: 999px;
+  --px-control-min-hit: 44px;
+  --px-control-height: 44px;
+  --px-control-height-lg: 52px;
+  --px-site-content-max: 1200px;
+  --px-search-width: 420px;
+  --px-panel-width: 400px;
+
+  --px-motion-fast: 120ms;
+  --px-motion-normal: 180ms;
+  --px-motion-ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+:root,
+:root[data-plexopus-theme="light"],
+:root[data-mantine-color-scheme="light"] {
+  color-scheme: light;
+  --px-color-background: #fbfcf8;
+  --px-color-surface: #ffffff;
+  --px-color-surface-alt: #f2f7f5;
+  --px-color-surface-raised: #ffffff;
+  --px-color-border: #dce4df;
+  --px-color-border-strong: #b4c7c0;
+  --px-color-text: #102d37;
+  --px-color-text-muted: #52676c;
+  --px-color-primary: #007e82;
+  --px-color-on-primary: #ffffff;
+  --px-color-link: #007e82;
+  --px-color-highlight: #d8f7f2;
+  --px-color-focus: #b45309;
+  --px-color-success: #166534;
+  --px-color-success-soft: #e8f5eb;
+  --px-color-warning: #9a6700;
+  --px-color-warning-soft: #fff5df;
+  --px-color-danger: #b42318;
+  --px-color-danger-soft: #fff1ef;
+  --px-shadow-sm: 0 2px 8px rgb(9 36 49 / 8%);
+  --px-shadow-md: 0 10px 28px rgb(9 36 49 / 13%);
+  --px-shadow-floating: 0 16px 48px rgb(9 36 49 / 17%);
+
+  /* Mappable CSS custom properties for public Shadow DOM components. */
+  --plexopus-text: var(--px-color-text);
+  --plexopus-muted: var(--px-color-text-muted);
+  --plexopus-surface: var(--px-color-surface);
+  --plexopus-surface-alt: var(--px-color-surface-alt);
+  --plexopus-surface-overlay: var(--px-color-surface-raised);
+  --plexopus-border: var(--px-color-border);
+  --plexopus-danger: var(--px-color-danger);
+  --plexopus-danger-soft: var(--px-color-danger-soft);
+  --plexopus-success: var(--px-color-success);
+  --plexopus-warning-soft: var(--px-color-warning-soft);
+}
+
+:root[data-plexopus-theme="dark"],
+:root[data-mantine-color-scheme="dark"] {
+  color-scheme: dark;
+  --px-color-background: #081e29;
+  --px-color-surface: #122f3a;
+  --px-color-surface-alt: #183a45;
+  --px-color-surface-raised: #1a3d47;
+  --px-color-border: #42616a;
+  --px-color-border-strong: #65818a;
+  --px-color-text: #eff7f6;
+  --px-color-text-muted: #bcd0d1;
+  --px-color-primary: #61dfd6;
+  --px-color-on-primary: #092431;
+  --px-color-link: #61dfd6;
+  --px-color-highlight: #1b4c50;
+  --px-color-focus: #ffb475;
+  --px-color-success: #90e7af;
+  --px-color-success-soft: #173d33;
+  --px-color-warning: #ffd188;
+  --px-color-warning-soft: #48391d;
+  --px-color-danger: #ffaba3;
+  --px-color-danger-soft: #4a292e;
+  --px-shadow-sm: 0 2px 8px rgb(0 0 0 / 20%);
+  --px-shadow-md: 0 12px 32px rgb(0 0 0 / 28%);
+  --px-shadow-floating: 0 16px 48px rgb(0 0 0 / 38%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --px-motion-fast: 0ms;
+    --px-motion-normal: 0ms;
+  }
+}
