@@ -1,31 +1,50 @@
 'use strict';
-
-// The site and language links work without JavaScript. This progressively
-// enhances only the illustrative connectivity example and section navigation.
-const demo = document.querySelector('[data-demo]');
-if (demo) {
-  const control = demo.querySelector('.valve-control');
-  const toggle = demo.querySelector('input');
-  const result = demo.querySelector('[role="status"]');
-  const state = demo.querySelector('[data-valve-state]');
-  const key = demo.querySelector('.closed-key');
-  const update = () => {
-    const closed = toggle.checked;
-    demo.classList.toggle('is-closed', closed);
-    result.textContent = closed ? demo.dataset.closedMessage : demo.dataset.openMessage;
-    state.textContent = closed ? demo.dataset.closedLabel : demo.dataset.openLabel;
-    key.hidden = !closed;
-  };
-  control.hidden = false;
-  toggle.addEventListener('change', update);
-  update();
-}
-
-// Keep the current section when switching between the two complete HTML pages.
-for (const link of document.querySelectorAll('.languages a')) {
+// The website is readable without JavaScript. These controls only switch illustrative examples.
+for (const link of document.querySelectorAll('.lang-switch a')) {
   link.addEventListener('click', () => {
-    const target = new URL(link.href);
-    target.hash = location.hash;
-    link.href = target.href;
+    const url = new URL(link.href, location.href);
+    url.hash = location.hash;
+    link.href = url.href;
   });
+}
+const chatCard = document.getElementById('chat-card');
+if (chatCard) {
+  const questions = [...document.querySelectorAll('[data-chat]')];
+  const answers = (chatCard.dataset.answers || '').split('|||');
+  const question = document.getElementById('chat-question');
+  const answer = document.getElementById('chat-answer');
+  for (const item of questions) {
+    item.addEventListener('click', () => {
+      const index = Number(item.dataset.chat);
+      if (!Number.isInteger(index) || !answers[index]) return;
+      questions.forEach((element) => element.setAttribute('aria-pressed', String(element === item)));
+      question.textContent = item.textContent;
+      answer.textContent = answers[index];
+    });
+  }
+}
+const lab = document.getElementById('lab-visual');
+if (lab) {
+  const buttons = [...document.querySelectorAll('[data-lab]')];
+  const titles = (lab.dataset.titles || '').split('|||');
+  const texts = (lab.dataset.texts || '').split('|||');
+  const title = document.getElementById('lab-result-title');
+  const result = document.getElementById('lab-result-text');
+  const accent = document.getElementById('lab-accent');
+  for (const button of buttons) {
+    button.addEventListener('click', () => {
+      const index = Number(button.dataset.lab);
+      if (!Number.isInteger(index) || !titles[index] || !texts[index]) return;
+      buttons.forEach((element) => element.setAttribute('aria-pressed', String(element === button)));
+      lab.dataset.mode = ['connect', 'closure', 'isolate'][index] || 'connect';
+      title.textContent = titles[index];
+      result.textContent = texts[index];
+      const paths = [
+        'M158 143L242 103H359L454 56M242 103V195H355L451 220',
+        'M242 103H359L454 56M242 103V195H355L451 220',
+        'M158 143L242 103M242 103V195H355L451 220'
+      ];
+      accent.setAttribute('d', paths[index]);
+    });
+  }
 }

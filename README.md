@@ -1,32 +1,26 @@
-# Plexopus · Public website
+# Plexopus public website — launch branch
 
-A lightweight, static English/Italian introduction to Plexopus: what it is, the needs it addresses, its current capabilities and its broad direction.
-
-- **English:** https://manvento.github.io/plexopus-pages/
-- **Italiano:** https://manvento.github.io/plexopus-pages/it/
-
-## GitHub Pages
-
-Publish directly from **`main` → `/ (root)`** in **Settings → Pages → Build and deployment → Deploy from a branch**. The `.nojekyll` file bypasses Jekyll. No compilation, package installation, secrets or custom Actions workflow is required. Subsequent commits to `main` publish automatically.
-
-English lives in `index.html`, Italian in `it/index.html`. Both pages contain their complete translated content and work without JavaScript. Shared assets use relative URLs so the project-site prefix is supported. JavaScript only enhances the conceptual valve example and preserves the current anchor when changing language.
+Bilingual static website for the Plexopus v1 launch. English: `index.html`. Italian: `it/index.html`.
+The CSS is split into `assets/tokens.css` (Design System v1 semantic token snapshot, from the approved November 2026 styleguide) and `assets/site.css`; interactive educational examples use `assets/site.js`. Both pages work without JavaScript.
 
 ## Preview locally
-
-From the repository directory:
-
 ```sh
 python3 -m http.server 8080
 ```
+Open http://localhost:8080/ or http://localhost:8080/it/. No framework build, remote fonts, CDN, analytics or external JavaScript is used.
 
-Open http://localhost:8080/ or http://localhost:8080/it/.
+## Brand and messaging
+The existing binary assets in `assets/` are identical to the canonical Plexopus application icons/wordmark. Do not redraw the logo. Light editorial page sections follow the Plexopus Design System v1.
 
-## Edit content
+The public copy focuses on Plexopus Web guided workflows, the network engine through REST, MCP integrations with compatible AI assistants, GIS and non-GIS interoperability, and MPL-2.0. Illustration and simulated chat buttons do not call APIs, operate valves, or represent a verified network analysis.
 
-Update both HTML pages together. The stylesheet is `assets/site.css`; the optional interaction is `assets/site.js`.
+## Internal launch checklist
+- [ ] Merge/release Plexopus map-first Web UX, MCP endpoint and the first agreed LLM experience before publishing the v1 claims.
+- [ ] Verify MCP OAuth, per-network permissions, connected/upstream/downstream trace, isolation and maps against a release tag; review E2E and production security.
+- [ ] When the Core source repository becomes public, point the "Read the license" link to the actual public source and use an accurate "Explore the source" label.
+- [ ] Add a real Web/demo link only when its URL, auth requirements, and data are public.
+- [ ] Verify EN/IT, keyboard/touch, responsive widths, JS-disabled HTML, CSS reduced-motion, color contrast and alt labels.
+- [ ] Confirm domain plexopus.org, CNAME, canonical/alternate/OG URLs, sitemap, robots and 404. Re-check after transferring into the Plexopus organization.
+- [ ] Merge into `main` only when publication is approved: GitHub Pages publishes from main.
 
-Keep public copy focused on the product, user needs and benefits. The only implementation context intentionally discussed is open-source GIS compatibility and cloud/on-premises availability. The roadmap is deliberately broad, with no delivery dates. Distinguish current functionality from planned GIS integrations and later utility profiles. The connectivity illustration is original and illustrative; it is not a hydraulic simulation or a screenshot of the application.
-
-The approved Plexopus logo, symbol and icons are reused unchanged from the project's production branding. The website contains no external fonts, analytics, third-party scripts, maps or application calls. Contact and feedback links point to this public repository; the private source repository is not linked.
-
-When adding a custom domain, update canonical and alternate links, Open Graph URLs, `sitemap.xml`, `robots.txt` and the home links in `404.html` to match the final address.
+No public-facing progress banners or incomplete-feature promises are used; this checklist stays internal to the repository.
