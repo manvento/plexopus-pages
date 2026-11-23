@@ -393,7 +393,10 @@ h1,h2,h3,p{margin-top:0}
 
 /* Concept 03: continuous underwater environment. No return to white after dive. */
 .bridge{
-  position:relative;overflow:hidden;isolation:isolate;
+  /* Do NOT use overflow:hidden here: an overflow-clipped ancestor becomes a
+     scroll container and breaks position:sticky on .bridge-stage (iOS/Chromium).
+     The child .stage already clips its own visual contents. */
+  position:relative;overflow:visible;isolation:isolate;
   background:linear-gradient(180deg,#0a3040 0%,#0a3745 48%,#092e3b 100%);
   color:#eef9f7;border-top:1px solid #276b7380;
   padding:clamp(90px,12vw,160px) 24px clamp(80px,11vw,135px);

@@ -53,3 +53,11 @@ La PR resta in **Draft**. Non effettuare il merge senza approvazione esplicita.
 - La profondità ora prosegue monotonamente: fine della discesa **#092431**, fine funzionalità **#071b27**, fine Studio **#061620**, fine assistente AI **#04121c**, chiusura più profonda. Una trama sott'acqua con raggi e particelle resta presente nei capitoli successivi.
 - Nessuna nuova dipendenza. Niente simulazioni fisiche o attuazioni reali.
 - Test manuali da completare: iPhone Safari (scroll pinned, schede, dispositivi), tablet/desktop, orientamento, tastiera e movimento ridotto.
+
+## Fix — la sezione delle funzionalità non resta fissa durante lo scroll
+
+La classe `.bridge` aveva `overflow:hidden` applicato **al contenitore di scroll** della scena sticky. In Chromium e Safari l'overflow del contenitore può intercettare lo scroll e impedire a `.bridge-stage` di restare ancorata alla viewport; la sezione riservava comunque `440–490svh`, creando un lungo spazio vuoto (“buco”).
+
+- Correzione: `.bridge { overflow: visible; }`; rimane `.bridge-stage { overflow: hidden; }` per ritagliare soltanto grafica e particelle.
+- Verifica tecnica riprodotta con Chromium headless alle dimensioni **390 × 844**: con `overflow:hidden` lo stage perde il pin e sale a `top:-422px` dopo 422px di scroll; con `overflow:visible` rimane a `top:0` in tutta la corsa dello scroll.
+- **Regressione manuale da ripetere su iPhone Safari**: entrare nel capitolo «Capire una rete», scorrere avanti per le quattro scene (tracing, scenari, isolamento, integrazioni), tornare indietro; verificare che SVG e testo restino visibili e che non ci sia spazio vuoto.
