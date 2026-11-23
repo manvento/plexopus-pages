@@ -88,3 +88,11 @@ La classe `.bridge` aveva `overflow:hidden` applicato **al contenitore di scroll
 - Entrambe le occorrenze del vecchio simbolo «✳» nello smartphone (avatar e schermata di benvenuto) sono sostituite da `../assets/plexopus-symbol-128.png`, il simbolo ufficiale riutilizzato senza modificarne i pixel.
 - La scena smartphone su viewport fino a 820px ora usa **righe di griglia** per titolo, testo, dispositivo, progress e disclaimer. Il telefono è centrato nella sua riga e il suo fattore di scala si adatta alle altezze più ridotte; in landscape stretto il layout passa a due colonne, invece di sovrapporre telefono e copy.
 - Digitazione, risposta MCP e scroll reversibile invariati. Testare a mano su iPhone Safari in portrait e landscape, con barra degli indirizzi espansa/chiusa e VoiceOver. La precedente sezione Studio e i capitoli rete restano invariati.
+
+## Consolidamento 01 — manutenzione CSS e QA automatizzata
+
+- CSS diviso in tre file nell'**ordine di cascata originale**: `story.css` (foundation/elementi base), `story-scenes.css` (capitoli, animazioni e loro breakpoint), `story-mobile.css` (ultima correzione responsive del telefono). La suddivisione non cambia le regole esistenti: i fogli vengono caricati nella stessa sequenza di prima.
+- Eliminati selettori morti delle prove precedenti: handoff Chat→Studio, vecchio diagramma integrazioni radiale e alcune parti grafiche non più presenti.
+- Verifiche funzionali e responsive: file `concept/qa/smoke.mjs` per Chromium Playwright, copertura scroll pin, progressione delle scene, Studio/smartphone visibili all'ingresso, assenza di sovrapposizioni, iPhone portrait/landscape e movimento ridotto; screenshot diagnostici salvati localmente.
+- Il test è sviluppo/QA: **Playwright non è richiesto dal sito** e non si carica sul client.
+- Non è incluso un merge in `main`, non è una pubblicazione, né una traduzione definitiva.
