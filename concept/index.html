@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#092431">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="light dark">
+  <title>Plexopus — Concept di scrollytelling</title>
+  <meta name="description" content="Prototipo sperimentale di storytelling Plexopus: un viaggio sotto la superficie delle reti, fino all'assistente AI e Plexopus Studio.">
+  <link rel="icon" type="image/png" href="../assets/favicon-32x32.png">
+  <link rel="stylesheet" href="../assets/tokens.css">
+  <link rel="stylesheet" href="./story.css">
+  <script src="./story.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Vai al contenuto</a>
+  <header class="topbar">
+    <a href="#top" class="brand" aria-label="Plexopus, torna all'inizio">
+      <img src="../assets/plexopus-symbol-128.png" width="34" height="34" alt="">
+      <span>Plexopus</span>
+    </a>
+    <span class="edition"><span class="edition-dot"></span> STORY CONCEPT <span class="edition-index">01 / 02</span></span>
+    <nav aria-label="Navigazione prototipo">
+      <a class="topbar-link" href="#dive">Il viaggio</a>
+      <a class="topbar-link" href="#conversation">AI + Studio</a>
+      <a class="topbar-home" href="../">Sito attuale <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="intro" id="top" aria-labelledby="intro-title">
+      <div class="intro-glow" aria-hidden="true"></div>
+      <div class="intro-content">
+        <p class="overline"><span class="tiny-line"></span> OPEN NETWORK INTELLIGENCE</p>
+        <h1 id="intro-title">C'è molto di più<br><em>sotto la superficie.</em></h1>
+        <p class="intro-lead">Ogni connessione nasconde una storia. Plexopus la rende comprensibile, navigabile e utile. Segui il polpo, esplora la rete e scopri che cosa accade quando l'intelligenza incontra le infrastrutture.</p>
+        <div class="intro-actions">
+          <a class="primary-action" href="#dive">Inizia il viaggio <span aria-hidden="true">↓</span></a>
+          <span class="intro-hint">Scorri per dare vita alla storia</span>
+        </div>
+      </div>
+      <div class="intro-symbol" aria-hidden="true">
+        <div class="intro-ring ring-outside"></div>
+        <div class="intro-ring ring-inside"></div>
+        <img src="../assets/plexopus-symbol-128.png" width="220" height="220" alt="">
+        <div class="intro-label">CONNESSIONI, NON SOLO MAPPE</div>
+      </div>
+      <div class="sea-horizon" aria-hidden="true">
+        <svg viewBox="0 0 1440 160" preserveAspectRatio="none"><path d="M0 59C160 10 290 100 455 62S710 23 880 65 1170 101 1440 46V160H0Z" fill="#67c7be"/><path d="M0 94C210 62 292 144 473 97S823 68 1039 99 1315 109 1440 77V160H0Z" fill="#0c7481"/></svg>
+      </div>
+      <a href="#dive" class="scroll-cue" aria-label="Scorri verso il mondo sommerso"><span>SCROLL TO EXPLORE</span><span class="scroll-line" aria-hidden="true"></span></a>
+    </section>
+
+    <!-- Scene 1: pinned descent, controlled by the position of the page scroll. -->
+    <section id="dive" class="scroll-track dive-track" aria-labelledby="dive-title">
+      <div class="stage dive-stage" id="dive-stage" data-depth="0">
+        <div class="sun-shimmer" aria-hidden="true"></div>
+        <div class="light-beams" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="sea-particles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="depth-indicator" aria-hidden="true"><span>SUPERFICIE</span><div class="depth-track"><span id="depth-progress"></span></div><span>FONDALE</span></div>
+
+        <div class="dive-copy">
+          <p class="overline light">CAPITOLO 01 / IL VIAGGIO</p>
+          <div class="dive-caption" data-dive-caption="0">
+            <h2 id="dive-title">Dalla superficie<br>alle connessioni.</h2>
+            <p>Scendi sotto ciò che vedi. Le reti non sono soltanto linee sulla mappa, ma relazioni e regole che vale la pena comprendere.</p>
+          </div>
+          <div class="dive-caption" data-dive-caption="1">
+            <h2>Ogni elemento<br>è collegato.</h2>
+            <p>Un nodo, una valvola, un tratto di rete. Plexopus segue la connettività reale del modello e rende visibili i percorsi che li uniscono.</p>
+          </div>
+          <div class="dive-caption" data-dive-caption="2">
+            <h2>Oltre la mappa.<br>Dentro la rete.</h2>
+            <p>Traccia, confronta scenari e pianifica isolamenti con alimentazioni e vincoli espliciti. Senza confondere una connessione con un flusso fisico.</p>
+          </div>
+        </div>
+
+        <div class="octo-traveler" id="octo-traveler" aria-hidden="true">
+          <div class="traveler-halo"></div>
+          <img src="../assets/plexopus-symbol-128.png" width="180" height="180" alt="">
+          <span class="traveler-signal signal-a"></span><span class="traveler-signal signal-b"></span><span class="traveler-signal signal-c"></span>
+        </div>
+
+        <div class="seabed-network" aria-hidden="true">
+          <svg viewBox="0 0 1200 480" preserveAspectRatio="xMidYMax meet">
+            <defs>
+              <linearGradient id="sealine" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#61dfd6"/><stop offset=".65" stop-color="#61dfd6"/><stop offset="1" stop-color="#ffb475"/></linearGradient>
+              <filter id="node-glow"><feGaussianBlur stdDeviation="7"/></filter>
+            </defs>
+            <path class="seabed-backline" d="M50 390H270L430 264H660L814 187H1070M430 264L540 394H788L998 341M814 187V65H1030M270 390L158 278H35" fill="none" stroke="#557884" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="seabed-highlight" d="M50 390H270L430 264H660L814 187H1070M430 264L540 394H788L998 341M814 187V65H1030" fill="none" stroke="url(#sealine)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/>
+            <g fill="#0e3443" stroke="#7fe1d4" stroke-width="5"><circle cx="50" cy="390" r="15"/><circle cx="270" cy="390" r="12"/><circle cx="430" cy="264" r="15"/><circle cx="660" cy="264" r="12"/><circle cx="814" cy="187" r="18"/><circle cx="1070" cy="187" r="14"/><circle cx="540" cy="394" r="11"/><circle cx="788" cy="394" r="13"/><circle cx="998" cy="341" r="15"/><circle cx="1030" cy="65" r="14"/></g>
+            <g fill="#c8eeeb" font-family="sans-serif" font-size="22" font-weight="600"><text x="19" y="346">SOURCE</text><text x="399" y="226">V-102</text><text x="795" y="153">JUNCTION</text><text x="981" y="305">NODE</text></g>
+            <circle cx="430" cy="264" r="35" fill="#61dfd6" opacity=".18" filter="url(#node-glow)"/>
+          </svg>
+          <div class="seabed-floor"></div>
+        </div>
+        <div class="stage-bottom-hint" aria-hidden="true">SCOPRI CHE COSA PUOI FARE <span>↓</span></div>
+      </div>
+    </section>
+
+    <section class="bridge" aria-labelledby="bridge-title">
+      <p class="overline">LA RETE PRENDE VITA</p>
+      <h2 id="bridge-title">Non serve immaginare<br>le connessioni. <span>Basta seguirle.</span></h2>
+      <p>La stessa intelligenza di rete è accessibile da Plexopus Studio, dalle API REST e da assistenti AI compatibili tramite MCP. Le regole restano nel motore, non nelle illustrazioni.</p>
+      <div class="bridge-values" aria-label="Funzionalità Plexopus"><span>TRACING</span><span>SCENARI</span><span>ISOLAMENTO</span><span>INTEGRAZIONI</span></div>
+    </section>
+
+    <!-- Scene 2: the phone arrives, question types, authorized analysis appears, then Studio is revealed. -->
+    <section id="conversation" class="scroll-track conversation-track" aria-labelledby="conversation-title">
+      <div class="stage conversation-stage" id="conversation-stage" data-moment="0">
+        <div class="conversation-aura" aria-hidden="true"></div>
+        <div class="conversation-topline"><p class="overline light">CAPITOLO 02 / DALLA DOMANDA ALLA MAPPA</p><span class="moment-counter" id="moment-counter">01 / 05</span></div>
+        <div class="conversation-copy">
+          <h2 id="conversation-title">E se potessi<br><em>parlare con la rete?</em></h2>
+          <p id="moment-description">Un assistente AI compatibile diventa un nuovo modo di accedere all'intelligenza delle reti.</p>
+          <div class="moment-dots" aria-label="Sequenza narrativa" role="group"><span class="active"></span><span></span><span></span><span></span><span></span></div>
+        </div>
+
+        <div class="device-theatre" aria-label="Dimostrazione concettuale di assistente AI collegato a Plexopus">
+          <div class="phone-shadow" aria-hidden="true"></div>
+          <div class="phone" id="story-phone" aria-hidden="true">
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="phone-toolbar"><span class="phone-back">‹</span><div class="assistant-avatar">✳</div><span><strong>Assistente di rete</strong><small>via Plexopus MCP</small></span><span class="more-dots">•••</span></div>
+              <div class="phone-chat">
+                <div class="phone-welcome"><span class="phone-glyph">✳</span><span>La rete ha le risposte.<br>Fai una domanda.</span></div>
+                <div class="phone-question" id="phone-question"><span id="typed-question"></span><span class="typing-caret"></span></div>
+                <div class="phone-tool"><span class="tool-led"></span><span>plexopus.trace_scenario</span><span class="tool-status">autorizzato</span></div>
+                <div class="phone-result">
+                  <div class="result-pill"><span></span> ANALISI DELLO SCENARIO</div>
+                  <p>Confronto completato.</p>
+                  <svg class="phone-mini-network" viewBox="0 0 240 110" role="img" aria-label="Confronto schematico di percorsi raggiungibili e non più raggiungibili">
+                    <path d="M18 64H79L133 29H215M79 64L139 87H215" stroke="#1d6c77" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <path d="M18 64H79L133 29H215" stroke="#12b8a7" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <path d="M79 64L139 87H215" stroke="#ed9b61" stroke-width="5" stroke-dasharray="7 7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <g fill="white" stroke="#1d9d95" stroke-width="3"><circle cx="18" cy="64" r="8"/><circle cx="79" cy="64" r="9"/><circle cx="215" cy="29" r="8"/></g><circle cx="215" cy="87" r="8" fill="#fff2e6" stroke="#ed9b61" stroke-width="3"/>
+                  </svg>
+                  <p class="result-small"><span class="result-dot"></span> Raggiungibile <span class="result-dot amber"></span> Non più raggiungibile</p>
+                  <span class="result-footnote">Esempio illustrativo · nessun dato reale</span>
+                </div>
+              </div>
+              <div class="phone-input"><span>Chiedi alla rete…</span><span class="send-icon">↑</span></div>
+              <div class="home-indicator"></div>
+            </div>
+          </div>
+
+          <div class="transfer-beam" aria-hidden="true"><span>RISULTATO AUTORIZZATO</span><i></i><span class="transfer-arr">→</span></div>
+
+          <div class="studio" id="story-studio" aria-hidden="true">
+            <div class="studio-bar"><div class="studio-symbol"><img src="../assets/plexopus-symbol-128.png" width="24" height="24" alt=""></div><strong>Plexopus <span>Studio</span></strong><span class="studio-network-name">WATER NETWORK · SAMPLE</span><span class="studio-controls">○ ○ ○</span></div>
+            <div class="studio-search">⌕ &nbsp; Cerca elemento o azione <span>⌘ K</span></div>
+            <div class="studio-map">
+              <svg viewBox="0 0 640 390" preserveAspectRatio="xMidYMid slice">
+                <defs><pattern id="studio-map-grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" stroke="#c3d5d2" stroke-width="1" fill="none"/></pattern></defs>
+                <rect width="640" height="390" fill="#e5efeb"/><rect width="640" height="390" fill="url(#studio-map-grid)"/>
+                <path d="M-15 120Q220 100 360 155T685 145M-15 320Q170 235 305 285T685 290" fill="none" stroke="#d5cdbb" stroke-width="28"/>
+                <path d="M-15 120Q220 100 360 155T685 145M-15 320Q170 235 305 285T685 290" fill="none" stroke="#f9faf7" stroke-width="16"/>
+                <path d="M22 205L169 135L294 203L404 98L603 122M294 203L393 291L574 321" fill="none" stroke="#628c88" stroke-width="12" stroke-linecap="round"/>
+                <path class="studio-network-trace" d="M22 205L169 135L294 203L404 98L603 122" fill="none" stroke="#0c948f" stroke-width="9" stroke-linecap="round" pathLength="1"/>
+                <path class="studio-network-disconnected" d="M294 203L393 291L574 321" fill="none" stroke="#de9464" stroke-width="8" stroke-dasharray="12 10" stroke-linecap="round"/>
+                <g fill="#fff" stroke="#0c948f" stroke-width="5"><circle cx="22" cy="205" r="12"/><circle cx="169" cy="135" r="10"/><circle cx="294" cy="203" r="13"/><circle cx="404" cy="98" r="11"/><circle cx="603" cy="122" r="11"/></g>
+                <g fill="#fff8f1" stroke="#de9464" stroke-width="4"><circle cx="393" cy="291" r="10"/><circle cx="574" cy="321" r="12"/></g>
+                <g font-family="sans-serif" font-weight="700" font-size="15" fill="#38615f"><text x="127" y="111">S1</text><text x="277" y="179">V-102</text><text x="413" y="76">J-4</text></g>
+              </svg>
+              <div class="studio-overlay"><span class="overlay-kicker">NETWORK ANALYSIS</span><strong>Confronto scenario</strong><p>Connessioni e percorso interessato</p><div class="overlay-status"><span class="status-dot"></span> Risultato visualizzato</div></div>
+              <div class="studio-zoom">+<span>−</span></div>
+            </div>
+            <div class="studio-footer">MODEL <span>BUILD</span> RULES <span>VALIDATE</span><b>PLEXOPUS</b></div>
+          </div>
+        </div>
+
+        <div class="progress-footer"><span>SCORRI PER AVANZARE</span><div class="scene-timeline" aria-hidden="true"><span id="scene-timeline-fill"></span></div><span>AI → MCP → STUDIO</span></div>
+        <p class="concept-disclaimer">Concept illustrativo: nessuna analisi viene eseguita. Il collegamento ChatGPT–Studio è una funzione pilot soggetta a configurazione, autenticazione e autorizzazioni.</p>
+      </div>
+    </section>
+
+    <section class="closing" id="next" aria-labelledby="closing-title">
+      <div class="closing-glow" aria-hidden="true"></div>
+      <div class="closing-emblem"><img src="../assets/plexopus-symbol-128.png" width="96" height="96" alt=""></div>
+      <p class="overline light">UN SOLO MOTORE. MOLTI MODI DI USARLO.</p>
+      <h2 id="closing-title">Oltre la mappa.<br><em>Ogni connessione conta.</em></h2>
+      <p>Un motore open source per le reti. Un ambiente di lavoro pensato per le persone. Strumenti che possono parlare con le tue applicazioni e con gli assistenti AI.</p>
+      <div class="closing-links"><a href="../" class="primary-action">Torna al sito Plexopus <span aria-hidden="true">↗</span></a><a href="#top" class="secondary-action">Rivedi il viaggio ↑</a></div>
+      <div class="closing-footnote">Plexopus · Prototipo narrativo A/B · Non è un sito di produzione.</div>
+    </section>
+  </main>
+</body>
+</html>
