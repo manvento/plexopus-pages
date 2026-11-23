@@ -83,7 +83,7 @@ function intersects(a,b) {
 let failures=0;
 let browser;
 try {
-  browser = await chromium.launch({ headless:true, args:['--no-sandbox'] });
+  browser = await chromium.launch({ channel:'chrome', headless:true, args:['--no-sandbox'] });
   for (const viewport of viewports) {
     const {name,width,height,mobile} = viewport;
     const context = await browser.newContext({
