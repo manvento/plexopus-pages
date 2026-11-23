@@ -100,35 +100,74 @@
       </div>
     </section>
 
-    <section class="bridge" id="capabilities-bridge" aria-labelledby="bridge-title">
-      <div class="bridge-ambient" aria-hidden="true"></div>
-      <div class="bridge-inner">
-        <p class="overline light">LA RETE PRENDE VITA</p>
+    <section class="bridge scroll-track" id="capabilities-bridge" aria-labelledby="bridge-title">
+  <div class="stage bridge-stage" id="bridge-stage" data-bridge-index="0">
+    <div class="ocean-continuity" aria-hidden="true"></div>
+    <div class="bridge-inner">
+      <div class="bridge-copy">
+        <p class="overline light">CAPITOLO 02 / DENTRO LA RETE <span class="bridge-counter" id="bridge-counter">01 / 04</span></p>
         <h2 id="bridge-title">Capire una rete.<br><span>Gestirla con semplicità.</span></h2>
-        <p>Scendendo sotto la superficie emergono le possibilità del motore Plexopus. Studio ti permette di vedere e gestire la rete. MCP apre un altro accesso, immediato, attraverso il tuo assistente AI.</p>
-        <div class="bridge-flow" aria-hidden="true">
-          <svg viewBox="0 0 920 105" preserveAspectRatio="xMidYMid meet">
-            <path class="bridge-flow-base" d="M42 58H245L332 27H470L565 79H712L855 39" fill="none" stroke="#4b7a82" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-            <path class="bridge-flow-active" d="M42 58H245L332 27H470L565 79H712L855 39" fill="none" stroke="#61dfd6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/>
-            <g fill="#0d3845" stroke="#6bd5c9" stroke-width="4">
-              <circle cx="42" cy="58" r="11"/><circle cx="245" cy="58" r="10"/><circle cx="470" cy="27" r="10"/><circle cx="712" cy="79" r="10"/><circle cx="855" cy="39" r="12"/>
-            </g>
-          </svg>
-        </div>
-        <div class="bridge-values" aria-label="Capacità del motore Plexopus">
-          <article class="bridge-value" data-bridge-step="0"><b>01</b><h3>Tracing</h3><p>Scopri i collegamenti e i percorsi raggiungibili.</p></article>
-          <article class="bridge-value" data-bridge-step="1"><b>02</b><h3>Scenari</h3><p>Confronta la rete prima e dopo una chiusura ipotetica.</p></article>
-          <article class="bridge-value" data-bridge-step="2"><b>03</b><h3>Isolamento</h3><p>Valuta dispositivi e alimentazioni dichiarate.</p></article>
-          <article class="bridge-value" data-bridge-step="3"><b>04</b><h3>Integrazioni</h3><p>Connetti la logica di rete ai tuoi sistemi e alle AI.</p></article>
-        </div>
-        <p class="bridge-footnote">Le animazioni sono concettuali: non rappresentano simulazioni fisiche o operazioni reali sugli impianti.</p>
+        <p>Continua a scendere. Quattro possibilità prendono vita, una alla volta, mentre scopri che cosa puoi fare con Plexopus.</p>
       </div>
-    </section>
+      <div class="bridge-flow" aria-hidden="true"><svg data-bridge-scene="0" viewBox="0 0 620 216" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+ <path d="M34 115H130L215 64H355L465 29M215 64V155H359L545 184M130 115V187H70" class="cap-base"/>
+ <path d="M34 115H130L215 64H355L465 29M215 64V155H359L545 184" class="cap-ink" pathLength="1"/>
+ <g class="cap-nodes"><circle cx="34" cy="115" r="10"/><circle cx="130" cy="115" r="8"/><circle cx="215" cy="64" r="11"/><circle cx="355" cy="64" r="8"/><circle cx="465" cy="29" r="10"/><circle cx="215" cy="155" r="8"/><circle cx="359" cy="155" r="9"/><circle cx="545" cy="184" r="11"/></g>
+ <g class="cap-labels"><text x="14" y="96">ORIGINE</text><text x="203" y="41">V-102</text><text x="469" y="19">RAMO A</text><text x="501" y="208">RAMO B</text></g>
+</svg>
+<svg data-bridge-scene="1" viewBox="0 0 620 216" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+ <rect x="5" y="10" width="295" height="190" rx="14" class="cap-panel"/>
+ <rect x="320" y="10" width="295" height="190" rx="14" class="cap-panel"/>
+ <text x="25" y="39" class="cap-heading">PRIMA</text><text x="340" y="39" class="cap-heading">DOPO LA CHIUSURA</text>
+ <path d="M25 103H110L180 69H270M180 69V160H275" class="cap-base"/>
+ <path d="M25 103H110L180 69H270M180 69V160H275" class="cap-ink" pathLength="1"/>
+ <path d="M340 103H418" class="cap-reached"/>
+ <path d="M418 103L495 69H586M495 69V160H587" class="cap-unreached"/>
+ <circle cx="418" cy="103" r="14" class="cap-barrier"/>
+ <path d="m412 97 12 12m0-12-12 12" class="cap-cross"/>
+ <g class="cap-labels"><text x="26" y="186">Percorsi raggiungibili</text><text x="341" y="186">Rami non più raggiunti</text></g>
+</svg>
+<svg data-bridge-scene="2" viewBox="0 0 620 216" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+ <text x="24" y="26" class="cap-heading">ALIMENTAZIONI ESPLICITE</text>
+ <path d="M45 73H210L337 116H555M45 179H210L337 116" class="cap-base"/>
+ <path d="M45 73H210M45 179H210" class="cap-ink" pathLength="1"/>
+ <path d="M210 73L337 116H555M210 179L337 116" class="cap-unreached"/>
+ <g class="cap-nodes"><circle cx="45" cy="73" r="12"/><circle cx="45" cy="179" r="12"/></g>
+ <circle cx="210" cy="73" r="16" class="cap-barrier"/><circle cx="210" cy="179" r="16" class="cap-barrier"/>
+ <path d="m202 65 16 16m0-16-16 16m0 90 16 16m0-16-16 16" class="cap-cross"/>
+ <rect x="524" y="102" width="56" height="28" rx="6" class="cap-target"/>
+ <g class="cap-labels"><text x="18" y="54">S1</text><text x="18" y="205">S2</text><text x="194" y="48">V-12</text><text x="194" y="159">V-16</text><text x="527" y="95">TARGET</text></g>
+ <text x="533" y="120" class="cap-target-label">P-17</text>
+</svg>
+<svg data-bridge-scene="3" viewBox="0 0 620 216" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+ <g class="cap-integrations">
+  <path d="M304 105L143 48M304 105L490 48M304 105L144 177M304 105L488 177" class="cap-base"/>
+  <path d="M304 105L143 48M304 105L490 48M304 105L144 177M304 105L488 177" class="cap-ink" pathLength="1"/>
+  <rect x="249" y="79" width="112" height="53" rx="15" class="cap-core"/>
+  <text x="305" y="102" text-anchor="middle" class="cap-core-label">PLEXOPUS</text>
+  <text x="305" y="118" text-anchor="middle" class="cap-core-sub">CORE</text>
+  <g class="cap-pill"><rect x="84" y="28" width="120" height="41" rx="20"/><rect x="422" y="28" width="120" height="41" rx="20"/><rect x="80" y="158" width="128" height="41" rx="20"/><rect x="420" y="158" width="140" height="41" rx="20"/></g>
+  <g class="cap-pill-label"><text x="144" y="53" text-anchor="middle">GIS</text><text x="482" y="53" text-anchor="middle">GESTIONALI</text><text x="144" y="184" text-anchor="middle">REST API</text><text x="490" y="184" text-anchor="middle">MCP / AI</text></g>
+ </g>
+</svg></div>
+      <div class="bridge-values" aria-label="Capacità del motore Plexopus">
+        <article class="bridge-value is-active" data-bridge-step="0"><b>01 / TRACE</b><h3>Segui le connessioni</h3><p>Dall'elemento selezionato, esplora i percorsi raggiungibili.</p></article>
+        <article class="bridge-value" data-bridge-step="1"><b>02 / SCENARIO</b><h3>Prova una chiusura</h3><p>Confronta la rete prima e dopo una barriera temporanea.</p></article>
+        <article class="bridge-value" data-bridge-step="2"><b>03 / ISOLAMENTO</b><h3>Pianifica un isolamento</h3><p>Individua dispositivi proposti rispetto alle alimentazioni dichiarate.</p></article>
+        <article class="bridge-value" data-bridge-step="3"><b>04 / INTEGRAZIONE</b><h3>Connetti i tuoi sistemi</h3><p>Riutilizza le analisi in GIS, gestionali e assistenti AI.</p></article>
+      </div>
+      <div class="bridge-bottom">
+        <div class="bridge-progress" aria-hidden="true"><span id="bridge-progress-fill"></span></div>
+        <p class="bridge-footnote">Schemi illustrativi: non rappresentano flussi fisici, manovre reali o risultati di una rete specifica.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 
     <!-- Scene 2: Studio is an independent, complete visual way to explore and manage a network. -->
     <section id="studio-story" class="scroll-track studio-track" aria-labelledby="studio-title">
-      <div class="stage studio-stage" id="studio-stage" data-studio-mode="explore">
+      <div class="stage studio-stage" id="studio-stage" data-studio-mode="explore"><div class="ocean-continuity" aria-hidden="true"></div>
         <div class="studio-atmosphere" aria-hidden="true"></div>
         <div class="studio-story-top"><p class="overline light">CAPITOLO 02 / PLEXOPUS STUDIO</p><span class="studio-story-counter" id="studio-story-counter">01 / 03</span></div>
         <div class="studio-story-copy">
@@ -176,7 +215,7 @@
     <!-- Scene 3: AI chat is a distinct way to ask the network through MCP, with no forced Studio handoff. -->
 
     <section id="conversation" class="scroll-track conversation-track" aria-labelledby="conversation-title">
-      <div class="stage conversation-stage" id="conversation-stage" data-moment="0">
+      <div class="stage conversation-stage" id="conversation-stage" data-moment="0"><div class="ocean-continuity" aria-hidden="true"></div>
         <div class="conversation-aura" aria-hidden="true"></div>
         <div class="conversation-topline"><p class="overline light">CAPITOLO 03 / ASSISTENTE DI RETE</p><span class="moment-counter" id="moment-counter">01 / 05</span></div>
         <div class="conversation-copy">
@@ -222,7 +261,7 @@
       </div>
     </section>
 
-    <section class="closing" id="next" aria-labelledby="closing-title">
+    <section class="closing" id="next" aria-labelledby="closing-title"><div class="ocean-continuity" aria-hidden="true"></div>
       <div class="closing-glow" aria-hidden="true"></div>
       <div class="closing-emblem"><img src="../assets/plexopus-symbol-128.png" width="96" height="96" alt=""></div>
       <p class="overline light">UN SOLO MOTORE. MOLTI MODI DI USARLO.</p>

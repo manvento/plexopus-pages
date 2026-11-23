@@ -45,3 +45,11 @@ Aprire `http://localhost:8000/concept/`. In alternativa visualizzare i file di q
 - [ ] Allineamento alle funzioni effettive di Studio e MCP al lancio
 
 La PR resta in **Draft**. Non effettuare il merge senza approvazione esplicita.
+
+## Revisione 04 — Fondale continuo e dimostrazioni bloccate nello scroll
+
+- La scena «Capire una rete. Gestirla con semplicità.» usa lo stesso meccanismo **sticky + scroll scrub** del viaggio iniziale: la pagina riserva 4 segmenti narrativi prima di proseguire a Studio. Non è una striscia di tag che scorre via immediatamente.
+- Le quattro capacità sono **illustrazioni diverse**: tracing con percorsi evidenziati, chiusura con pannelli prima/dopo, piano di isolamento con alimentazioni e valvole proposte, integrazione del motore in GIS/gestionali/REST/MCP. Ogni visualizzazione cambia quando cambia la scheda attiva. Su mobile resta visibile una scheda per volta.
+- La profondità ora prosegue monotonamente: fine della discesa **#092431**, fine funzionalità **#071b27**, fine Studio **#061620**, fine assistente AI **#04121c**, chiusura più profonda. Una trama sott'acqua con raggi e particelle resta presente nei capitoli successivi.
+- Nessuna nuova dipendenza. Niente simulazioni fisiche o attuazioni reali.
+- Test manuali da completare: iPhone Safari (scroll pinned, schede, dispositivi), tablet/desktop, orientamento, tastiera e movimento ridotto.

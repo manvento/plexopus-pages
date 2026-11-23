@@ -1,5 +1,8 @@
 'use strict';
 
+// Opt into sticky scrollytelling only when JavaScript is available.
+document.documentElement.classList.add('has-scroll-story');
+
 /* Prototype only: one passive scroll listener, one coalesced animation frame.
    No timers, network calls, map API calls, analytics or dependencies. */
 
@@ -73,12 +76,17 @@ const ease = (a, b, p) => {
 const mediaReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 const mediaMobile = window.matchMedia('(max-width: 820px)');
 const closing = document.querySelector('.closing');
-const bridge = document.querySelector('.bridge');
+const bridge = document.getElementById('capabilities-bridge');
+const bridgeStage = document.getElementById('bridge-stage');
 const bridgeCards = [...document.querySelectorAll('[data-bridge-step]')];
+const bridgeScenes = [...document.querySelectorAll('[data-bridge-scene]')];
+const bridgeCounter = document.getElementById('bridge-counter');
+const bridgeProgressFill = document.getElementById('bridge-progress-fill');
 let queued = false;
 let oldDiveStep = -1;
 let oldMoment = -1;
 let oldStudioStep = -1;
+let oldBridgeStep = -1;
 
 function progressOf(track) {
   const rect = track.getBoundingClientRect();
@@ -129,20 +137,34 @@ function animateDive(progress) {
   }
 }
 
-function updateBridge() {
-  // Read scroll progress only. No video frames or network operations.
-  const rect = bridge.getBoundingClientRect();
-  const p = clamp((window.innerHeight * .72 - rect.top) / (window.innerHeight * .55 + rect.height));
-  bridge.style.setProperty('--bridge-draw', p.toFixed(4));
-  bridgeCards.forEach((card, i) => {
-    card.classList.toggle('is-active', p >= (i + .3) / 4);
-  });
+// Palette checkpoints align exactly at every section boundary:
+ // dive #092431 → bridge #071b27 → Studio #061620 → chat #04121c.
+function paintDepth(stage, start, end, p) {
+  const v = start.map((a, i) => Math.round(lerp(a, end[i], p)));
+  stage.style.backgroundColor = 'rgb(' + v.join(',') + ')';
+  stage.style.setProperty('--scene-p', p.toFixed(4));
+}
+function updateBridge(progress) {
+  const p = clamp(progress);
+  const current = Math.min(3, Math.floor(p * 4));
+  const local = clamp((p - current / 4) * 4);
+  paintDepth(bridgeStage, [9, 36, 49], [7, 27, 39], p);
+  bridgeStage.style.setProperty('--bridge-path-draw', ease(.04, .92, local).toFixed(4));
+  bridgeStage.style.setProperty('--bridge-effect', ease(.44, .9, local).toFixed(4));
+  bridgeProgressFill.style.width = (p * 100).toFixed(2) + '%';
+  if (current !== oldBridgeStep) {
+    oldBridgeStep = current;
+    bridgeStage.dataset.bridgeIndex = String(current);
+    bridgeCounter.textContent = '0' + (current + 1) + ' / 04';
+    bridgeCards.forEach((card, i) => card.classList.toggle('is-active', i === current));
+  }
 }
 
 function updateStudio(progress) {
   const p = clamp(progress);
   const current = p < .33 ? 0 : p < .68 ? 1 : 2;
   studioStage.style.setProperty('--studio-progress', p.toFixed(4));
+  paintDepth(studioStage, [7, 27, 39], [6, 22, 32], p);
   const arrival = ease(.04, .20, p);
   const scale = lerp(.91, 1, arrival);
   const mobile = mediaMobile.matches;
@@ -172,6 +194,7 @@ function updateStudio(progress) {
 function updateStory(progress) {
   const p = clamp(progress);
   conversationStage.style.setProperty('--story-progress', p.toFixed(4));
+  paintDepth(conversationStage, [6, 22, 32], [4, 18, 28], p);
   const moment = p < .18 ? 0 : p < .39 ? 1 : p < .55 ? 2 : p < .76 ? 3 : 4;
   if (moment !== oldMoment) {
     oldMoment = moment;
@@ -210,18 +233,17 @@ function render() {
     momentDescription.textContent = storyMessages[4];
     studioStepDescription.textContent = studioSteps[2].description;
     studioStage.dataset.studioMode = 'validate';
-    bridge.style.setProperty('--bridge-draw', '1');
-    bridge.classList.remove('is-scroll-ready');
-    bridgeCards.forEach(card => card.classList.add('is-active'));
+    bridgeStage.style.setProperty('--bridge-path-draw', '1');
+    bridgeStage.dataset.bridgeIndex = '0';
+    bridgeCards.forEach((card, i) => card.classList.toggle('is-active', i === 0));
     typedQuestion.textContent = question;
     conversationStage.dataset.moment = '4';
     return;
   }
   document.body.classList.remove('reduced-motion');
-  bridge.classList.add('is-scroll-ready');
   setDeepHeader();
   animateDive(progressOf(diveTrack));
-  updateBridge();
+  updateBridge(progressOf(bridge));
   updateStudio(progressOf(studioTrack));
   updateStory(progressOf(conversationTrack));
 }
@@ -238,6 +260,7 @@ mediaReduced.addEventListener('change', () => {
   oldDiveStep = -1;
   oldMoment = -1;
   oldStudioStep = -1;
+  oldBridgeStep = -1;
   if (mediaReduced.matches) {
     const nodes = [diveStage, octopus, storyPhone, storyStudio, phoneWelcome,
       questionBubble, phoneTool, phoneResult, resultTrace, resultBranches];
