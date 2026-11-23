@@ -22,8 +22,8 @@
     </a>
     <span class="edition"><span class="edition-dot"></span> STORY CONCEPT <span class="edition-index">01 / 02</span></span>
     <nav aria-label="Navigazione prototipo">
-      <a class="topbar-link" href="#dive">Il viaggio</a>
-      <a class="topbar-link" href="#conversation">AI + Studio</a>
+      <a class="topbar-link" href="#studio-story">Studio</a>
+      <a class="topbar-link" href="#conversation">Assistente AI</a>
       <a class="topbar-home" href="../">Sito attuale <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
@@ -102,19 +102,68 @@
 
     <section class="bridge" aria-labelledby="bridge-title">
       <p class="overline">LA RETE PRENDE VITA</p>
-      <h2 id="bridge-title">Non serve immaginare<br>le connessioni. <span>Basta seguirle.</span></h2>
-      <p>La stessa intelligenza di rete è accessibile da Plexopus Studio, dalle API REST e da assistenti AI compatibili tramite MCP. Le regole restano nel motore, non nelle illustrazioni.</p>
+      <h2 id="bridge-title">Capire una rete.<br><span>Gestirla con semplicità.</span></h2>
+      <p>Plexopus ti offre due esperienze complementari: Studio per esplorare e gestire la rete con la mappa, e gli assistenti AI tramite MCP per fare domande e ottenere risposte direttamente nella conversazione.</p>
       <div class="bridge-values" aria-label="Funzionalità Plexopus"><span>TRACING</span><span>SCENARI</span><span>ISOLAMENTO</span><span>INTEGRAZIONI</span></div>
     </section>
 
-    <!-- Scene 2: the phone arrives, question types, authorized analysis appears, then Studio is revealed. -->
+
+    <!-- Scene 2: Studio is an independent, complete visual way to explore and manage a network. -->
+    <section id="studio-story" class="scroll-track studio-track" aria-labelledby="studio-title">
+      <div class="stage studio-stage" id="studio-stage" data-studio-mode="explore">
+        <div class="studio-atmosphere" aria-hidden="true"></div>
+        <div class="studio-story-top"><p class="overline light">CAPITOLO 02 / PLEXOPUS STUDIO</p><span class="studio-story-counter" id="studio-story-counter">01 / 03</span></div>
+        <div class="studio-story-copy">
+          <h2 id="studio-title">La rete davanti a te.<br><em>Tutto sotto controllo.</em></h2>
+          <p class="studio-story-lead">Plexopus Studio mette la rete al centro: esplorare, modificare e verificare senza perdersi tra strumenti complessi.</p>
+          <div class="studio-step-copy" aria-live="polite">
+            <p class="studio-step-label" id="studio-step-label">01 · ESPLORA</p>
+            <h3 id="studio-step-heading">Segui i collegamenti.</h3>
+            <p id="studio-step-description">Trova un elemento, visualizza le connessioni e scopri il suo contesto direttamente sulla mappa.</p>
+          </div>
+          <div class="studio-step-markers" aria-label="Fasi della dimostrazione"><span class="is-active">Esplora</span><span>Gestisci</span><span>Verifica</span></div>
+        </div>
+        <div class="studio-theatre">
+          <div class="studio" id="story-studio" role="img" aria-label="Illustrazione concettuale di Plexopus Studio: rete in mappa, ricerca ed operazioni di gestione">
+            <div class="studio-bar"><div class="studio-symbol"><img src="../assets/plexopus-symbol-128.png" width="24" height="24" alt=""></div><strong>Plexopus <span>Studio</span></strong><span class="studio-network-name">WATER NETWORK · SAMPLE</span><span class="studio-controls">○ ○ ○</span></div>
+            <div class="studio-search">⌕ &nbsp; Cerca elemento o azione <span>⌘ K</span></div>
+            <div class="studio-map">
+              <svg viewBox="0 0 640 390" preserveAspectRatio="xMidYMid slice">
+                <defs><pattern id="studio-map-grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" stroke="#c3d5d2" stroke-width="1" fill="none"/></pattern></defs>
+                <rect width="640" height="390" fill="#e5efeb"/><rect width="640" height="390" fill="url(#studio-map-grid)"/>
+                <path d="M-15 120Q220 100 360 155T685 145M-15 320Q170 235 305 285T685 290" fill="none" stroke="#d5cdbb" stroke-width="28"/>
+                <path d="M-15 120Q220 100 360 155T685 145M-15 320Q170 235 305 285T685 290" fill="none" stroke="#f9faf7" stroke-width="16"/>
+                <path d="M22 205L169 135L294 203L404 98L603 122M294 203L393 291L574 321" fill="none" stroke="#628c88" stroke-width="12" stroke-linecap="round"/>
+                <path class="studio-network-trace" d="M22 205L169 135L294 203L404 98L603 122" fill="none" stroke="#0c948f" stroke-width="9" stroke-linecap="round" pathLength="1"/>
+                <path class="studio-draft-connection" d="M169 135L393 291" fill="none" stroke="#E9A268" stroke-width="7" stroke-dasharray="10 8" stroke-linecap="round"/>
+                <path class="studio-network-disconnected" d="M294 203L393 291L574 321" fill="none" stroke="#de9464" stroke-width="8" stroke-dasharray="12 10" stroke-linecap="round"/>
+                <g fill="#fff" stroke="#0c948f" stroke-width="5"><circle cx="22" cy="205" r="12"/><circle cx="169" cy="135" r="10"/><circle cx="294" cy="203" r="13"/><circle cx="404" cy="98" r="11"/><circle cx="603" cy="122" r="11"/></g>
+                <g fill="#fff8f1" stroke="#de9464" stroke-width="4"><circle cx="393" cy="291" r="10"/><circle cx="574" cy="321" r="12"/></g>
+                <g font-family="sans-serif" font-weight="700" font-size="15" fill="#38615f"><text x="127" y="111">S1</text><text x="277" y="179">V-102</text><text x="413" y="76">J-4</text></g>
+              </svg>
+              <div class="studio-overlay"><span class="overlay-kicker" id="studio-overlay-kicker">ESPLORA LA RETE</span><strong id="studio-overlay-title">La rete, a colpo d’occhio</strong><p id="studio-overlay-description">Trova gli elementi e le loro connessioni direttamente sulla mappa.</p><div class="overlay-status"><span class="status-dot"></span><span id="studio-overlay-state">Elemento selezionato</span></div></div>
+              <div class="studio-zoom">+<span>−</span></div>
+            </div>
+            <div class="studio-footer">MODEL <span>BUILD</span> RULES <span>VALIDATE</span><b>PLEXOPUS</b></div>
+          </div>
+        </div>
+        <div class="studio-story-footer">
+          <span>STUDIO · VEDI, GESTISCI, VERIFICA</span>
+          <div class="studio-story-progress" aria-hidden="true"><span id="studio-progress-fill"></span></div>
+        </div>
+        <p class="studio-story-disclaimer">Interfaccia concettuale: illustra i workflow di Studio, non mostra operazioni eseguite sulla rete.</p>
+      </div>
+    </section>
+
+    <!-- Scene 3: AI chat is a distinct way to ask the network through MCP, with no forced Studio handoff. -->
+
     <section id="conversation" class="scroll-track conversation-track" aria-labelledby="conversation-title">
       <div class="stage conversation-stage" id="conversation-stage" data-moment="0">
         <div class="conversation-aura" aria-hidden="true"></div>
-        <div class="conversation-topline"><p class="overline light">CAPITOLO 02 / DALLA DOMANDA ALLA MAPPA</p><span class="moment-counter" id="moment-counter">01 / 05</span></div>
+        <div class="conversation-topline"><p class="overline light">CAPITOLO 03 / ASSISTENTE DI RETE</p><span class="moment-counter" id="moment-counter">01 / 05</span></div>
         <div class="conversation-copy">
-          <h2 id="conversation-title">E se potessi<br><em>parlare con la rete?</em></h2>
-          <p id="moment-description">Un assistente AI compatibile diventa un nuovo modo di accedere all'intelligenza delle reti.</p>
+          <h2 id="conversation-title">Una domanda.<br><em>La rete risponde.</em></h2>
+          <p id="moment-description">Con MCP puoi dialogare con Plexopus attraverso il tuo assistente AI, senza aprire un'interfaccia tecnica.</p>
           <div class="moment-dots" aria-label="Sequenza narrativa" role="group"><span class="active"></span><span></span><span></span><span></span><span></span></div>
         </div>
 
@@ -146,36 +195,12 @@
             </div>
           </div>
 
-          <div class="handoff-status" id="handoff-status" aria-hidden="true">
-            <span class="handoff-check" aria-hidden="true">✓</span>
-            <span class="handoff-label"><small>PLEXOPUS MCP</small><strong>Analisi inviata a Studio</strong></span>
-          </div>
 
-          <div class="studio" id="story-studio" aria-hidden="true">
-            <div class="studio-bar"><div class="studio-symbol"><img src="../assets/plexopus-symbol-128.png" width="24" height="24" alt=""></div><strong>Plexopus <span>Studio</span></strong><span class="studio-network-name">WATER NETWORK · SAMPLE</span><span class="studio-controls">○ ○ ○</span></div>
-            <div class="studio-search">⌕ &nbsp; Cerca elemento o azione <span>⌘ K</span></div>
-            <div class="studio-map">
-              <svg viewBox="0 0 640 390" preserveAspectRatio="xMidYMid slice">
-                <defs><pattern id="studio-map-grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" stroke="#c3d5d2" stroke-width="1" fill="none"/></pattern></defs>
-                <rect width="640" height="390" fill="#e5efeb"/><rect width="640" height="390" fill="url(#studio-map-grid)"/>
-                <path d="M-15 120Q220 100 360 155T685 145M-15 320Q170 235 305 285T685 290" fill="none" stroke="#d5cdbb" stroke-width="28"/>
-                <path d="M-15 120Q220 100 360 155T685 145M-15 320Q170 235 305 285T685 290" fill="none" stroke="#f9faf7" stroke-width="16"/>
-                <path d="M22 205L169 135L294 203L404 98L603 122M294 203L393 291L574 321" fill="none" stroke="#628c88" stroke-width="12" stroke-linecap="round"/>
-                <path class="studio-network-trace" d="M22 205L169 135L294 203L404 98L603 122" fill="none" stroke="#0c948f" stroke-width="9" stroke-linecap="round" pathLength="1"/>
-                <path class="studio-network-disconnected" d="M294 203L393 291L574 321" fill="none" stroke="#de9464" stroke-width="8" stroke-dasharray="12 10" stroke-linecap="round"/>
-                <g fill="#fff" stroke="#0c948f" stroke-width="5"><circle cx="22" cy="205" r="12"/><circle cx="169" cy="135" r="10"/><circle cx="294" cy="203" r="13"/><circle cx="404" cy="98" r="11"/><circle cx="603" cy="122" r="11"/></g>
-                <g fill="#fff8f1" stroke="#de9464" stroke-width="4"><circle cx="393" cy="291" r="10"/><circle cx="574" cy="321" r="12"/></g>
-                <g font-family="sans-serif" font-weight="700" font-size="15" fill="#38615f"><text x="127" y="111">S1</text><text x="277" y="179">V-102</text><text x="413" y="76">J-4</text></g>
-              </svg>
-              <div class="studio-overlay"><span class="overlay-kicker">NETWORK ANALYSIS</span><strong>Confronto scenario</strong><p>Connessioni e percorso interessato</p><div class="overlay-status"><span class="status-dot"></span> Risultato visualizzato</div></div>
-              <div class="studio-zoom">+<span>−</span></div>
-            </div>
-            <div class="studio-footer">MODEL <span>BUILD</span> RULES <span>VALIDATE</span><b>PLEXOPUS</b></div>
-          </div>
+
         </div>
 
-        <div class="progress-footer"><span>SCORRI PER AVANZARE</span><div class="scene-timeline" aria-hidden="true"><span id="scene-timeline-fill"></span></div><span>AI → MCP → STUDIO</span></div>
-        <p class="concept-disclaimer">Concept illustrativo: nessuna analisi viene eseguita. Il collegamento ChatGPT–Studio è una funzione pilot soggetta a configurazione, autenticazione e autorizzazioni.</p>
+        <div class="progress-footer"><span>SCORRI PER AVANZARE</span><div class="scene-timeline" aria-hidden="true"><span id="scene-timeline-fill"></span></div><span>DOMANDA → MCP → RISPOSTA</span></div>
+        <p class="concept-disclaimer">Concept illustrativo: la chat non esegue analisi reali. MCP permette a un assistente AI compatibile di interrogare la rete, secondo permessi e configurazione. Studio resta un’esperienza indipendente.</p>
       </div>
     </section>
 
@@ -184,7 +209,7 @@
       <div class="closing-emblem"><img src="../assets/plexopus-symbol-128.png" width="96" height="96" alt=""></div>
       <p class="overline light">UN SOLO MOTORE. MOLTI MODI DI USARLO.</p>
       <h2 id="closing-title">Oltre la mappa.<br><em>Ogni connessione conta.</em></h2>
-      <p>Un motore open source per le reti. Un ambiente di lavoro pensato per le persone. Strumenti che possono parlare con le tue applicazioni e con gli assistenti AI.</p>
+      <p>Un motore open source, due modi complementari per usarlo: Plexopus Studio per vedere e gestire le reti; MCP per parlarci attraverso gli assistenti AI. Se necessario, le due esperienze possono integrarsi.</p>
       <div class="closing-links"><a href="../" class="primary-action">Torna al sito Plexopus <span aria-hidden="true">↗</span></a><a href="#top" class="secondary-action">Rivedi il viaggio ↑</a></div>
       <div class="closing-footnote">Plexopus · Prototipo narrativo A/B · Non è un sito di produzione.</div>
     </section>

@@ -7,6 +7,18 @@ const diveTrack = document.getElementById('dive');
 const diveStage = document.getElementById('dive-stage');
 const octopus = document.getElementById('octo-traveler');
 const diveCaptions = [...document.querySelectorAll('[data-dive-caption]')];
+const studioTrack = document.getElementById('studio-story');
+const studioStage = document.getElementById('studio-stage');
+const studioCounter = document.getElementById('studio-story-counter');
+const studioStepLabel = document.getElementById('studio-step-label');
+const studioStepHeading = document.getElementById('studio-step-heading');
+const studioStepDescription = document.getElementById('studio-step-description');
+const studioOverlayKicker = document.getElementById('studio-overlay-kicker');
+const studioOverlayTitle = document.getElementById('studio-overlay-title');
+const studioOverlayDescription = document.getElementById('studio-overlay-description');
+const studioOverlayState = document.getElementById('studio-overlay-state');
+const studioStepMarkers = [...document.querySelectorAll('.studio-step-markers span')];
+const studioProgressFill = document.getElementById('studio-progress-fill');
 const conversationTrack = document.getElementById('conversation');
 const conversationStage = document.getElementById('conversation-stage');
 const storyPhone = document.getElementById('story-phone');
@@ -18,7 +30,6 @@ const phoneTool = document.querySelector('.phone-tool');
 const phoneResult = document.querySelector('.phone-result');
 const resultTrace = document.querySelector('.studio-network-trace');
 const resultBranches = document.querySelector('.studio-network-disconnected');
-const handoffStatus = document.getElementById('handoff-status');
 const momentCounter = document.getElementById('moment-counter');
 const momentDescription = document.getElementById('moment-description');
 const momentDots = [...document.querySelectorAll('.moment-dots span')];
@@ -26,11 +37,31 @@ const bottomTimeline = document.getElementById('scene-timeline-fill');
 
 const question = 'Se chiudo la valvola V-102, quali tratti non sono più raggiungibili dal nodo S1?';
 const storyMessages = [
-  "Un assistente AI compatibile diventa un nuovo modo di accedere all'intelligenza delle reti.",
-  "La domanda prende forma. Non occorre conoscere tutti i comandi tecnici della piattaforma.",
-  "MCP invoca gli strumenti di Plexopus con permessi verificati e uno scenario esplicito.",
-  "Il risultato distingue i collegamenti raggiungibili da quelli esclusi nello scenario.",
-  "Il risultato viene trasferito nella scheda collegata di Plexopus Studio e mostrato sulla mappa."
+  "Con MCP puoi dialogare con Plexopus attraverso un assistente AI compatibile.",
+  "Scrivi una domanda comprensibile, senza dover conoscere i comandi della piattaforma.",
+  "MCP invoca strumenti di analisi secondo i permessi e i dati disponibili.",
+  "La risposta illustra che cosa è raggiungibile nello scenario, con evidenze di rete.",
+  "La risposta arriva direttamente nella conversazione: dialogare con la rete diventa immediato."
+];
+const studioSteps = [
+  {
+    mode: 'explore', label: '01 · ESPLORA', heading: 'Segui i collegamenti.',
+    description: 'Trova un elemento, visualizza le connessioni e scopri il suo contesto direttamente sulla mappa.',
+    kicker: 'ESPLORA LA RETE', title: 'La rete, a colpo d’occhio',
+    overlay: 'Trova gli elementi e le loro connessioni.', status: 'Elemento selezionato'
+  },
+  {
+    mode: 'build', label: '02 · GESTISCI', heading: 'Crea e modifica, con chiarezza.',
+    description: 'Aggiungi elementi e collegamenti con passaggi guidati, usando la mappa come riferimento.',
+    kicker: 'BUILD · GUIDATO', title: 'Crea una connessione',
+    overlay: 'Seleziona gli estremi e controlla il collegamento proposto.', status: 'Anteprima del collegamento'
+  },
+  {
+    mode: 'validate', label: '03 · VERIFICA', heading: 'Controlla quello che conta.',
+    description: 'Esplora le regole, avvia la validazione e individua gli elementi da verificare.',
+    kicker: 'VALIDATE · REGOLE', title: 'Verifica la rete',
+    overlay: 'Consulta problemi e risultati con il contesto cartografico.', status: 'Controlli a disposizione'
+  }
 ];
 
 const clamp = (n, min = 0, max = 1) => Math.max(min, Math.min(max, n));
@@ -46,6 +77,7 @@ const bridge = document.querySelector('.bridge');
 let queued = false;
 let oldDiveStep = -1;
 let oldMoment = -1;
+let oldStudioStep = -1;
 
 function progressOf(track) {
   const rect = track.getBoundingClientRect();
@@ -60,7 +92,7 @@ function setDeepHeader() {
   };
   document.body.classList.toggle(
     'is-deep',
-    activeIn(diveTrack) || activeIn(conversationTrack) || activeIn(closing)
+    activeIn(diveTrack) || activeIn(studioTrack) || activeIn(conversationTrack) || activeIn(closing)
   );
 }
 
@@ -96,6 +128,34 @@ function animateDive(progress) {
   }
 }
 
+function updateStudio(progress) {
+  const p = clamp(progress);
+  const current = p < .33 ? 0 : p < .68 ? 1 : 2;
+  studioStage.style.setProperty('--studio-progress', p.toFixed(4));
+  const arrival = ease(.04, .20, p);
+  const scale = lerp(.91, 1, arrival);
+  const mobile = mediaMobile.matches;
+  storyStudio.style.opacity = arrival.toFixed(3);
+  storyStudio.style.transform = 'translate(-50%, -50%) scale(' + scale.toFixed(3) + ')';
+  resultTrace.style.strokeDashoffset = (1 - ease(.14, .40, p)).toFixed(4);
+  resultBranches.style.opacity = ease(.68, .76, p).toFixed(3);
+  studioProgressFill.style.width = (100 * p).toFixed(2) + '%';
+  if (current !== oldStudioStep) {
+    oldStudioStep = current;
+    const data = studioSteps[current];
+    studioStage.dataset.studioMode = data.mode;
+    studioCounter.textContent = '0' + (current + 1) + ' / 03';
+    studioStepLabel.textContent = data.label;
+    studioStepHeading.textContent = data.heading;
+    studioStepDescription.textContent = data.description;
+    studioOverlayKicker.textContent = data.kicker;
+    studioOverlayTitle.textContent = data.title;
+    studioOverlayDescription.textContent = data.overlay;
+    studioOverlayState.textContent = data.status;
+    studioStepMarkers.forEach((item, i) => item.classList.toggle('is-active', i === current));
+  }
+}
+
 function updateStory(progress) {
   const p = clamp(progress);
   conversationStage.style.setProperty('--story-progress', p.toFixed(4));
@@ -110,15 +170,12 @@ function updateStory(progress) {
 
   const mobile = mediaMobile.matches;
   const arrival = ease(.02, .18, p);
-  // Exclusive phases: the phone fully exits BEFORE the new Studio scene enters.
-  const phoneExit = ease(.70, .78, p);
   const scale = mobile ? lerp(.63, .78, arrival) : lerp(.74, 1, arrival);
-  const rotate = lerp(-9, 0, arrival) + lerp(0, mobile ? 7 : -5, phoneExit);
-  storyPhone.style.left = (mobile ? lerp(50, 118, phoneExit) : lerp(45, -28, phoneExit)).toFixed(2) + '%';
-  storyPhone.style.transform = 'translate(-50%, -50%) scale(' +
-    (scale * lerp(1, .77, phoneExit)).toFixed(3) +
+  const rotate = lerp(-9, 0, arrival);
+  storyPhone.style.left = mobile ? '50%' : '45%';
+  storyPhone.style.transform = 'translate(-50%, -50%) scale(' + scale.toFixed(3) +
     ') rotate(' + rotate.toFixed(2) + 'deg)';
-  storyPhone.style.opacity = (1 - ease(.71, .78, p)).toFixed(3);
+  storyPhone.style.opacity = arrival.toFixed(3);
 
   const typedPortion = ease(.16, .38, p);
   typedQuestion.textContent = question.slice(0, Math.round(question.length * typedPortion));
@@ -130,22 +187,6 @@ function updateStory(progress) {
   phoneResult.style.opacity = ease(.53, .64, p).toFixed(3);
   phoneResult.style.transform = 'translateY(' + lerp(12, 0, ease(.53, .64, p)).toFixed(1) + 'px)';
 
-  // A brief MCP transfer confirmation fills the gap between the two devices.
-  const transferIn = ease(.78, .795, p);
-  const transferOut = ease(.815, .83, p);
-  handoffStatus.style.opacity = (transferIn * (1 - transferOut)).toFixed(3);
-  handoffStatus.style.transform = 'translate(-50%, -50%) scale(' +
-    lerp(.92, 1, transferIn).toFixed(3) + ')';
-  const revealStudio = ease(.83, .91, p);
-  storyStudio.style.opacity = revealStudio.toFixed(3);
-  storyStudio.style.transform = mobile ?
-    'translate(calc(-50% + ' + lerp(-65, 0, revealStudio).toFixed(1) +
-    'px), -50%) scale(' + lerp(.88, 1, revealStudio).toFixed(3) + ')' :
-    'translate(' + lerp(110, 0, revealStudio).toFixed(1) +
-    'px, -50%) scale(' + lerp(.83, 1, revealStudio).toFixed(3) + ')';
-
-  resultTrace.style.strokeDashoffset = (1 - ease(.86, .95, p)).toFixed(4);
-  resultBranches.style.opacity = ease(.88, .96, p).toFixed(3);
   bottomTimeline.style.width = (p * 100).toFixed(2) + '%';
 }
 
@@ -154,6 +195,8 @@ function render() {
   if (mediaReduced.matches) {
     document.body.classList.add('reduced-motion');
     momentDescription.textContent = storyMessages[4];
+    studioStepDescription.textContent = studioSteps[2].description;
+    studioStage.dataset.studioMode = 'validate';
     typedQuestion.textContent = question;
     conversationStage.dataset.moment = '4';
     return;
@@ -161,6 +204,7 @@ function render() {
   document.body.classList.remove('reduced-motion');
   setDeepHeader();
   animateDive(progressOf(diveTrack));
+  updateStudio(progressOf(studioTrack));
   updateStory(progressOf(conversationTrack));
 }
 
@@ -175,9 +219,10 @@ window.addEventListener('resize', schedule, { passive: true });
 mediaReduced.addEventListener('change', () => {
   oldDiveStep = -1;
   oldMoment = -1;
+  oldStudioStep = -1;
   if (mediaReduced.matches) {
     const nodes = [diveStage, octopus, storyPhone, storyStudio, phoneWelcome,
-      questionBubble, phoneTool, phoneResult, resultTrace, resultBranches, handoffStatus];
+      questionBubble, phoneTool, phoneResult, resultTrace, resultBranches];
     nodes.forEach((node) => { if (node) node.removeAttribute('style'); });
     diveCaptions.forEach((node) => node.removeAttribute('aria-hidden'));
   }
