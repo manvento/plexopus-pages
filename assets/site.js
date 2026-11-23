@@ -30,7 +30,9 @@ if (lab) {
   const texts = (lab.dataset.texts || '').split('|||');
   const title = document.getElementById('lab-result-title');
   const result = document.getElementById('lab-result-text');
-  const accent = document.getElementById('lab-accent');
+  const graphTitle = document.getElementById('graph-title');
+  const graphDesc = document.getElementById('graph-desc');
+  const graphDescriptions = (lab.dataset.graphDescriptions || '').split('|||');
   for (const button of buttons) {
     button.addEventListener('click', () => {
       const index = Number(button.dataset.lab);
@@ -39,12 +41,8 @@ if (lab) {
       lab.dataset.mode = ['connect', 'closure', 'isolate'][index] || 'connect';
       title.textContent = titles[index];
       result.textContent = texts[index];
-      const paths = [
-        'M158 143L242 103H359L454 56M242 103V195H355L451 220',
-        'M242 103H359L454 56M242 103V195H355L451 220',
-        'M158 143L242 103M242 103V195H355L451 220'
-      ];
-      accent.setAttribute('d', paths[index]);
+      if (graphTitle) graphTitle.textContent = titles[index];
+      if (graphDesc) graphDesc.textContent = graphDescriptions[index] || texts[index];
     });
   }
 }
