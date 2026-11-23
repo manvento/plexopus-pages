@@ -82,3 +82,9 @@ La classe `.bridge` aveva `overflow:hidden` applicato **al contenitore di scroll
 - Capitolo 02 / step 02: sostituiti i due riquadri separati prima/dopo con **un unico diagramma SVG persistente**. Il percorso parte completamente raggiungibile; avanzando nello scroll la valvola V-102 si chiude soltanto nello scenario ipotetico, e gli stessi rami a valle passano da verde a tracciato arancione tratteggiato, non più raggiungibile dall'origine S1. La topologia non salta di posizione e tornando indietro lo stato si riavvolge.
 - Contenuti esemplificativi, nessuna simulazione fisica o comando reale. Per utenti con movimento ridotto, lo schema mostra direttamente lo stato finale e il testo esplicita il caso d'uso.
 - QA visivo da completare su iPhone Safari (scroll avanti/indietro nello step 02) e desktop.
+
+## Revisione 08 — Logo ufficiale nella chat e layout mobile senza sovrapposizioni
+
+- Entrambe le occorrenze del vecchio simbolo «✳» nello smartphone (avatar e schermata di benvenuto) sono sostituite da `../assets/plexopus-symbol-128.png`, il simbolo ufficiale riutilizzato senza modificarne i pixel.
+- La scena smartphone su viewport fino a 820px ora usa **righe di griglia** per titolo, testo, dispositivo, progress e disclaimer. Il telefono è centrato nella sua riga e il suo fattore di scala si adatta alle altezze più ridotte; in landscape stretto il layout passa a due colonne, invece di sovrapporre telefono e copy.
+- Digitazione, risposta MCP e scroll reversibile invariati. Testare a mano su iPhone Safari in portrait e landscape, con barra degli indirizzi espansa/chiusa e VoiceOver. La precedente sezione Studio e i capitoli rete restano invariati.
