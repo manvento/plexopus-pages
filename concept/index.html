@@ -172,11 +172,11 @@
         <div class="studio-story-top"><p class="overline light">CAPITOLO 02 / PLEXOPUS STUDIO</p><span class="studio-story-counter" id="studio-story-counter">01 / 03</span></div>
         <div class="studio-story-copy">
           <h2 id="studio-title">La rete davanti a te.<br><em>Tutto sotto controllo.</em></h2>
-          <p class="studio-story-lead">Plexopus Studio mette la rete al centro: esplorare, modificare e verificare senza perdersi tra strumenti complessi.</p>
+          <p class="studio-story-lead">Plexopus Studio mette la mappa al centro. Basta selezionare un elemento per esplorarlo, modificarlo o verificare la rete.</p>
           <div class="studio-step-copy" aria-live="polite">
             <p class="studio-step-label" id="studio-step-label">01 · ESPLORA</p>
-            <h3 id="studio-step-heading">Segui i collegamenti.</h3>
-            <p id="studio-step-description">Trova un elemento, visualizza le connessioni e scopri il suo contesto direttamente sulla mappa.</p>
+            <h3 id="studio-step-heading">Seleziona. Scopri. Esplora.</h3>
+            <p id="studio-step-description">Tocca un elemento sulla mappa e segui i collegamenti senza perdere il contesto.</p>
           </div>
           <div class="studio-step-markers" aria-label="Fasi della dimostrazione"><span class="is-active">Esplora</span><span>Gestisci</span><span>Verifica</span></div>
         </div>
@@ -192,13 +192,39 @@
                 <path d="M-15 120Q220 100 360 155T685 145M-15 320Q170 235 305 285T685 290" fill="none" stroke="#f9faf7" stroke-width="16"/>
                 <path d="M22 205L169 135L294 203L404 98L603 122M294 203L393 291L574 321" fill="none" stroke="#628c88" stroke-width="12" stroke-linecap="round"/>
                 <path class="studio-network-trace" d="M22 205L169 135L294 203L404 98L603 122" fill="none" stroke="#0c948f" stroke-width="9" stroke-linecap="round" pathLength="1"/>
-                <path class="studio-draft-connection" d="M169 135L393 291" fill="none" stroke="#E9A268" stroke-width="7" stroke-dasharray="10 8" stroke-linecap="round"/>
+                <path class="studio-draft-connection" d="M169 135L393 291" fill="none" stroke="#E9A268" stroke-width="7" stroke-linecap="round" pathLength="1"/>
+                <g class="studio-explore-focus" aria-hidden="true">
+                  <circle cx="294" cy="203" r="25" fill="#0b8585" fill-opacity=".15" stroke="#0c948f" stroke-width="3" stroke-dasharray="6 5"/>
+                  <circle cx="294" cy="203" r="8" fill="#0c948f"/>
+                </g>
+                <g class="studio-build-picks" aria-hidden="true">
+                  <circle cx="169" cy="135" r="22" fill="#fcf0df" fill-opacity=".7" stroke="#dc8d45" stroke-width="4"/>
+                  <circle cx="393" cy="291" r="22" fill="#fcf0df" fill-opacity=".7" stroke="#dc8d45" stroke-width="4"/>
+                  <g font-family="sans-serif" font-size="17" font-weight="700" fill="#9b581f" text-anchor="middle">
+                    <text x="169" y="141">1</text><text x="393" y="297">2</text>
+                  </g>
+                </g>
+                <g class="studio-validation-focus" aria-hidden="true">
+                  <circle cx="393" cy="291" r="28" fill="#f4bd84" fill-opacity=".2" stroke="#c97e40" stroke-width="4"/>
+                  <circle cx="393" cy="291" r="13" fill="#f4bd84"/>
+                  <path d="M393 282V293M393 299V301" stroke="#713e1d" stroke-width="4" stroke-linecap="round"/>
+                </g>
                 <path class="studio-network-disconnected" d="M294 203L393 291L574 321" fill="none" stroke="#de9464" stroke-width="8" stroke-dasharray="12 10" stroke-linecap="round"/>
                 <g fill="#fff" stroke="#0c948f" stroke-width="5"><circle cx="22" cy="205" r="12"/><circle cx="169" cy="135" r="10"/><circle cx="294" cy="203" r="13"/><circle cx="404" cy="98" r="11"/><circle cx="603" cy="122" r="11"/></g>
                 <g fill="#fff8f1" stroke="#de9464" stroke-width="4"><circle cx="393" cy="291" r="10"/><circle cx="574" cy="321" r="12"/></g>
                 <g font-family="sans-serif" font-weight="700" font-size="15" fill="#38615f"><text x="127" y="111">S1</text><text x="277" y="179">V-102</text><text x="413" y="76">J-4</text></g>
               </svg>
-              <div class="studio-overlay"><span class="overlay-kicker" id="studio-overlay-kicker">ESPLORA LA RETE</span><strong id="studio-overlay-title">La rete, a colpo d’occhio</strong><p id="studio-overlay-description">Trova gli elementi e le loro connessioni direttamente sulla mappa.</p><div class="overlay-status"><span class="status-dot"></span><span id="studio-overlay-state">Elemento selezionato</span></div></div>
+              <div class="studio-overlay">
+                <span class="overlay-kicker" id="studio-overlay-kicker">ESPLORA LA RETE</span>
+                <strong id="studio-overlay-title">Valvola V-102</strong>
+                <p id="studio-overlay-description">Seleziona un elemento e scopri come si collega alla rete.</p>
+                <div class="studio-overlay-facts" id="studio-overlay-facts" aria-hidden="true">
+                  <span class="studio-fact"><b id="studio-fact-a">V-102</b><small id="studio-fact-a-label">Elemento</small></span>
+                  <span class="studio-fact"><b id="studio-fact-b">Traccia</b><small id="studio-fact-b-label">Azione guidata</small></span>
+                </div>
+                <div class="overlay-status"><span class="status-dot"></span><span id="studio-overlay-state">Esplora i collegamenti</span></div>
+              </div>
+              <div class="studio-map-mode" aria-hidden="true"><span class="studio-map-mode-icon" id="studio-map-mode-icon">⌕</span><span id="studio-map-mode-text">Selezione sulla mappa</span></div>
               <div class="studio-zoom">+<span>−</span></div>
             </div>
             <div class="studio-footer">MODEL <span>BUILD</span> RULES <span>VALIDATE</span><b>PLEXOPUS</b></div>

@@ -20,6 +20,13 @@ const studioOverlayKicker = document.getElementById('studio-overlay-kicker');
 const studioOverlayTitle = document.getElementById('studio-overlay-title');
 const studioOverlayDescription = document.getElementById('studio-overlay-description');
 const studioOverlayState = document.getElementById('studio-overlay-state');
+const studioFactA = document.getElementById('studio-fact-a');
+const studioFactALabel = document.getElementById('studio-fact-a-label');
+const studioFactB = document.getElementById('studio-fact-b');
+const studioFactBLabel = document.getElementById('studio-fact-b-label');
+const studioMapModeIcon = document.getElementById('studio-map-mode-icon');
+const studioMapModeText = document.getElementById('studio-map-mode-text');
+const studioDraft = document.querySelector('.studio-draft-connection');
 const studioStepMarkers = [...document.querySelectorAll('.studio-step-markers span')];
 const studioProgressFill = document.getElementById('studio-progress-fill');
 const conversationTrack = document.getElementById('conversation');
@@ -48,22 +55,28 @@ const storyMessages = [
 ];
 const studioSteps = [
   {
-    mode: 'explore', label: '01 · ESPLORA', heading: 'Segui i collegamenti.',
-    description: 'Trova un elemento, visualizza le connessioni e scopri il suo contesto direttamente sulla mappa.',
-    kicker: 'ESPLORA LA RETE', title: 'La rete, a colpo d’occhio',
-    overlay: 'Trova gli elementi e le loro connessioni.', status: 'Elemento selezionato'
+    mode: 'explore', label: '01 · ESPLORA', heading: 'Seleziona. Scopri. Esplora.',
+    description: 'Tocca un elemento sulla mappa e segui i collegamenti senza perdere il contesto.',
+    kicker: 'ESPLORA LA RETE', title: 'Valvola V-102',
+    overlay: 'Seleziona un elemento e scopri come si collega alla rete.', status: 'Esplora i collegamenti',
+    factA: 'V-102', factALabel: 'Elemento', factB: 'Traccia', factBLabel: 'Azione guidata',
+    mapIcon: '⌕', mapCue: 'Selezione sulla mappa'
   },
   {
-    mode: 'build', label: '02 · GESTISCI', heading: 'Crea e modifica, con chiarezza.',
-    description: 'Aggiungi elementi e collegamenti con passaggi guidati, usando la mappa come riferimento.',
-    kicker: 'BUILD · GUIDATO', title: 'Crea una connessione',
-    overlay: 'Seleziona gli estremi e controlla il collegamento proposto.', status: 'Anteprima del collegamento'
+    mode: 'build', label: '02 · GESTISCI', heading: 'Collega due elementi, facilmente.',
+    description: 'Scegli i due estremi sulla mappa: Studio prepara una connessione da verificare prima di salvarla.',
+    kicker: 'BUILD · GUIDATO', title: 'Nuova connessione',
+    overlay: 'I due estremi scelti compongono una proposta, senza modificare subito la rete.', status: 'Anteprima da confermare',
+    factA: '1 → 2', factALabel: 'Estremi scelti', factB: 'Bozza', factBLabel: 'Nessuna scrittura',
+    mapIcon: '+', mapCue: 'Crea sulla mappa'
   },
   {
-    mode: 'validate', label: '03 · VERIFICA', heading: 'Controlla quello che conta.',
-    description: 'Esplora le regole, avvia la validazione e individua gli elementi da verificare.',
-    kicker: 'VALIDATE · REGOLE', title: 'Verifica la rete',
-    overlay: 'Consulta problemi e risultati con il contesto cartografico.', status: 'Controlli a disposizione'
+    mode: 'validate', label: '03 · VERIFICA', heading: 'Le anomalie diventano visibili.',
+    description: 'Esegui la validazione e apri ogni segnalazione direttamente nel suo contesto cartografico.',
+    kicker: 'VALIDATE · RETE', title: 'Elemento da verificare',
+    overlay: 'Una segnalazione viene evidenziata sulla mappa per esaminarla.', status: 'Apri il dettaglio',
+    factA: 'J-4', factALabel: 'Esempio', factB: 'Issue', factBLabel: 'Da esaminare',
+    mapIcon: '!', mapCue: 'Verifica e localizza'
   }
 ];
 
@@ -165,15 +178,13 @@ function updateStudio(progress) {
   const current = p < .33 ? 0 : p < .68 ? 1 : 2;
   studioStage.style.setProperty('--studio-progress', p.toFixed(4));
   paintDepth(studioStage, [7, 27, 39], [6, 22, 32], p);
-  const arrival = ease(.04, .20, p);
-  const scale = lerp(.91, 1, arrival);
-  const mobile = mediaMobile.matches;
-  storyStudio.style.opacity = arrival.toFixed(3);
-  storyStudio.style.transform = mobile ?
-    'scale(' + scale.toFixed(3) + ')' :
-    'translate(-50%, -50%) scale(' + scale.toFixed(3) + ')';
-  resultTrace.style.strokeDashoffset = (1 - ease(.14, .40, p)).toFixed(4);
-  resultBranches.style.opacity = ease(.68, .76, p).toFixed(3);
+  // Studio is visible at the very first frame of its pinned section.
+  // Scroll changes the workflow, never reveals the application's shell.
+  const currentMode = current === 0 ? 'explore' : current === 1 ? 'build' : 'validate';
+  studioStage.dataset.studioMode = currentMode;
+  resultTrace.style.strokeDashoffset = (1 - ease(0, .28, p)).toFixed(4);
+  studioDraft.style.strokeDashoffset = (1 - ease(.34, .57, p)).toFixed(4);
+  resultBranches.style.opacity = ease(.70, .80, p).toFixed(3);
   studioProgressFill.style.width = (100 * p).toFixed(2) + '%';
   if (current !== oldStudioStep) {
     oldStudioStep = current;
@@ -187,6 +198,12 @@ function updateStudio(progress) {
     studioOverlayTitle.textContent = data.title;
     studioOverlayDescription.textContent = data.overlay;
     studioOverlayState.textContent = data.status;
+    studioFactA.textContent = data.factA;
+    studioFactALabel.textContent = data.factALabel;
+    studioFactB.textContent = data.factB;
+    studioFactBLabel.textContent = data.factBLabel;
+    studioMapModeIcon.textContent = data.mapIcon;
+    studioMapModeText.textContent = data.mapCue;
     studioStepMarkers.forEach((item, i) => item.classList.toggle('is-active', i === current));
   }
 }

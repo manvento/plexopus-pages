@@ -61,3 +61,10 @@ La classe `.bridge` aveva `overflow:hidden` applicato **al contenitore di scroll
 - Correzione: `.bridge { overflow: visible; }`; rimane `.bridge-stage { overflow: hidden; }` per ritagliare soltanto grafica e particelle.
 - Verifica tecnica riprodotta con Chromium headless alle dimensioni **390 × 844**: con `overflow:hidden` lo stage perde il pin e sale a `top:-422px` dopo 422px di scroll; con `overflow:visible` rimane a `top:0` in tutta la corsa dello scroll.
 - **Regressione manuale da ripetere su iPhone Safari**: entrare nel capitolo «Capire una rete», scorrere avanti per le quattro scene (tracing, scenari, isolamento, integrazioni), tornare indietro; verificare che SVG e testo restino visibili e che non ci sia spazio vuoto.
+
+## Studio v2 — interfaccia immediata e valore del prodotto
+
+- La shell dell'interfaccia Studio è **visibile dal primo frame** della sezione, anche se lo scroll è fermo a progresso 0. Non viene più rivelata con un fade ritardato (precedentemente `ease(.04,.20,p)` e `opacity:0`), evitando il vuoto iniziale.
+- Lo scroll muove **solo la dimostrazione del lavoro sulla rete**: 01 selezione e percorsi con focus sulla valvola, 02 creazione guidata di una connessione fra due estremi con bozza, 03 validazione che evidenzia un elemento da esaminare. Il pannello e un'indicazione sulla mappa cambiano insieme, per raccontare in modo più leggibile ogni capacità.
+- Schemi concettuali e dati d'esempio, nessun salvataggio/controllo effettivo eseguito dal sito.
+- Verificare su iPhone Safari che la mappa sia visibile appena entra in viewport e che ciascuna fase sia leggibile, compresa la scheda contestuale.
