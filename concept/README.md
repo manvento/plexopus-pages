@@ -68,3 +68,10 @@ La classe `.bridge` aveva `overflow:hidden` applicato **al contenitore di scroll
 - Lo scroll muove **solo la dimostrazione del lavoro sulla rete**: 01 selezione e percorsi con focus sulla valvola, 02 creazione guidata di una connessione fra due estremi con bozza, 03 validazione che evidenzia un elemento da esaminare. Il pannello e un'indicazione sulla mappa cambiano insieme, per raccontare in modo più leggibile ogni capacità.
 - Schemi concettuali e dati d'esempio, nessun salvataggio/controllo effettivo eseguito dal sito.
 - Verificare su iPhone Safari che la mappa sia visibile appena entra in viewport e che ciascuna fase sia leggibile, compresa la scheda contestuale.
+
+## Revisione 06 — Smartphone immediato e integrazioni indipendenti
+
+- La scocca dello **smartphone dell'assistente AI è presente al primo frame** del capitolo, come Plexopus Studio. La sequenza di digitazione della domanda, la chiamata MCP illustrativa e la risposta continuano ad avanzare con lo scroll; non c'è più un'animazione di entrata del dispositivo.
+- Il capitolo sulle **capacità del motore** ora presenta tre esempi strettamente legati alla rete: tracing, confronto scenari e isolamento. Le integrazioni non sono più il quarto schema a raggiera.
+- È stato aggiunto un **capitolo autonomo dopo l'assistente AI**, dedicato alla natura integrabile di Plexopus, con stratificazione verticale della rete → Core → REST/MCP → applicazioni e flussi luminosi nello stile del fondale. Lo scroll fa emergere prima il motore, poi le interfacce e infine le applicazioni GIS/non-GIS.
+- Anche questa visualizzazione è un concept: nessun software è effettivamente collegato nel prototipo. La homepage pubblicata resta intatta.

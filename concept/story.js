@@ -88,6 +88,13 @@ const ease = (a, b, p) => {
 };
 const mediaReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 const mediaMobile = window.matchMedia('(max-width: 820px)');
+const ecosystemTrack = document.getElementById('ecosystem');
+const ecosystemStage = document.getElementById('ecosystem-stage');
+const ecosystemCounter = document.getElementById('ecosystem-counter');
+const ecosystemStepLabel = document.getElementById('ecosystem-step-label');
+const ecosystemStepTitle = document.getElementById('ecosystem-step-title');
+const ecosystemStepText = document.getElementById('ecosystem-step-text');
+const ecosystemProgress = document.getElementById('ecosystem-progress-fill');
 const closing = document.querySelector('.closing');
 const bridge = document.getElementById('capabilities-bridge');
 const bridgeStage = document.getElementById('bridge-stage');
@@ -100,6 +107,7 @@ let oldDiveStep = -1;
 let oldMoment = -1;
 let oldStudioStep = -1;
 let oldBridgeStep = -1;
+let oldEcosystemStep = -1;
 
 function progressOf(track) {
   const rect = track.getBoundingClientRect();
@@ -114,7 +122,7 @@ function setDeepHeader() {
   };
   document.body.classList.toggle(
     'is-deep',
-    activeIn(diveTrack) || activeIn(bridge) || activeIn(studioTrack) || activeIn(conversationTrack) || activeIn(closing)
+    activeIn(diveTrack) || activeIn(bridge) || activeIn(studioTrack) || activeIn(conversationTrack) || activeIn(ecosystemTrack) || activeIn(closing)
   );
 }
 
@@ -159,8 +167,8 @@ function paintDepth(stage, start, end, p) {
 }
 function updateBridge(progress) {
   const p = clamp(progress);
-  const current = Math.min(3, Math.floor(p * 4));
-  const local = clamp((p - current / 4) * 4);
+  const current = Math.min(2, Math.floor(p * 3));
+  const local = clamp((p - current / 3) * 3);
   paintDepth(bridgeStage, [9, 36, 49], [7, 27, 39], p);
   bridgeStage.style.setProperty('--bridge-path-draw', ease(.04, .92, local).toFixed(4));
   bridgeStage.style.setProperty('--bridge-effect', ease(.44, .9, local).toFixed(4));
@@ -168,7 +176,7 @@ function updateBridge(progress) {
   if (current !== oldBridgeStep) {
     oldBridgeStep = current;
     bridgeStage.dataset.bridgeIndex = String(current);
-    bridgeCounter.textContent = '0' + (current + 1) + ' / 04';
+    bridgeCounter.textContent = '0' + (current + 1) + ' / 03';
     bridgeCards.forEach((card, i) => card.classList.toggle('is-active', i === current));
   }
 }
@@ -221,15 +229,8 @@ function updateStory(progress) {
     momentDots.forEach((dot, i) => dot.classList.toggle('active', i === moment));
   }
 
-  const mobile = mediaMobile.matches;
-  const arrival = ease(.02, .18, p);
-  const scale = mobile ? lerp(.63, .78, arrival) : lerp(.74, 1, arrival);
-  const rotate = lerp(-9, 0, arrival);
-  storyPhone.style.left = mobile ? '50%' : '45%';
-  storyPhone.style.transform = 'translate(-50%, -50%) scale(' + scale.toFixed(3) +
-    ') rotate(' + rotate.toFixed(2) + 'deg)';
-  storyPhone.style.opacity = arrival.toFixed(3);
-
+  // The phone is already visible on the first frame (just like Studio).
+  // Only its conversation content advances with the scroll.
   const typedPortion = ease(.16, .38, p);
   typedQuestion.textContent = question.slice(0, Math.round(question.length * typedPortion));
   questionBubble.style.opacity = ease(.16, .23, p).toFixed(3);
@@ -241,6 +242,40 @@ function updateStory(progress) {
   phoneResult.style.transform = 'translateY(' + lerp(12, 0, ease(.53, .64, p)).toFixed(1) + 'px)';
 
   bottomTimeline.style.width = (p * 100).toFixed(2) + '%';
+}
+
+const ecosystemSteps = [
+  {
+    label: '01 · UNA BASE APERTA', title: 'Il motore è indipendente.',
+    text: 'Plexopus Core raccoglie modello, regole, connettività e analisi. Non serve cambiare i tuoi software per usarlo.'
+  },
+  {
+    label: '02 · SI INTEGRA', title: 'L’intelligenza esce dalla mappa.',
+    text: 'Con REST API e MCP, le stesse analisi diventano disponibili ad applicazioni e assistenti AI autorizzati.'
+  },
+  {
+    label: '03 · ENTRA NEL TUO MONDO', title: 'Si adatta ai tuoi strumenti.',
+    text: 'GIS, gestionali, applicazioni operative o soluzioni personalizzate: Plexopus non impone un’interfaccia unica.'
+  }
+];
+
+function updateEcosystem(progress) {
+  const p = clamp(progress);
+  const step = p < .31 ? 0 : p < .66 ? 1 : 2;
+  paintDepth(ecosystemStage, [4, 18, 28], [3, 14, 23], p);
+  ecosystemStage.style.setProperty('--ecosystem-p', p.toFixed(4));
+  ecosystemStage.style.setProperty('--eco-flow', ease(.08, .92, p).toFixed(4));
+  ecosystemStage.style.setProperty('--eco-offset',
+    Math.round((1 - ease(.08, .92, p)) * 240) + 'px');
+  ecosystemProgress.style.width = (p * 100).toFixed(2) + '%';
+  if (step !== oldEcosystemStep) {
+    oldEcosystemStep = step;
+    ecosystemStage.dataset.ecosystemStep = String(step);
+    ecosystemCounter.textContent = '0' + (step + 1) + ' / 03';
+    ecosystemStepLabel.textContent = ecosystemSteps[step].label;
+    ecosystemStepTitle.textContent = ecosystemSteps[step].title;
+    ecosystemStepText.textContent = ecosystemSteps[step].text;
+  }
 }
 
 function render() {
@@ -255,6 +290,9 @@ function render() {
     bridgeCards.forEach((card, i) => card.classList.toggle('is-active', i === 0));
     typedQuestion.textContent = question;
     conversationStage.dataset.moment = '4';
+    ecosystemStage.dataset.ecosystemStep = '2';
+    ecosystemStepTitle.textContent = ecosystemSteps[2].title;
+    ecosystemStepText.textContent = ecosystemSteps[2].text;
     return;
   }
   document.body.classList.remove('reduced-motion');
@@ -263,6 +301,7 @@ function render() {
   updateBridge(progressOf(bridge));
   updateStudio(progressOf(studioTrack));
   updateStory(progressOf(conversationTrack));
+  updateEcosystem(progressOf(ecosystemTrack));
 }
 
 function schedule() {
@@ -278,6 +317,7 @@ mediaReduced.addEventListener('change', () => {
   oldMoment = -1;
   oldStudioStep = -1;
   oldBridgeStep = -1;
+  oldEcosystemStep = -1;
   if (mediaReduced.matches) {
     const nodes = [diveStage, octopus, storyPhone, storyStudio, phoneWelcome,
       questionBubble, phoneTool, phoneResult, resultTrace, resultBranches];
