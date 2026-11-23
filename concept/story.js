@@ -74,6 +74,7 @@ const mediaReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 const mediaMobile = window.matchMedia('(max-width: 820px)');
 const closing = document.querySelector('.closing');
 const bridge = document.querySelector('.bridge');
+const bridgeCards = [...document.querySelectorAll('[data-bridge-step]')];
 let queued = false;
 let oldDiveStep = -1;
 let oldMoment = -1;
@@ -92,7 +93,7 @@ function setDeepHeader() {
   };
   document.body.classList.toggle(
     'is-deep',
-    activeIn(diveTrack) || activeIn(studioTrack) || activeIn(conversationTrack) || activeIn(closing)
+    activeIn(diveTrack) || activeIn(bridge) || activeIn(studioTrack) || activeIn(conversationTrack) || activeIn(closing)
   );
 }
 
@@ -128,6 +129,16 @@ function animateDive(progress) {
   }
 }
 
+function updateBridge() {
+  // Read scroll progress only. No video frames or network operations.
+  const rect = bridge.getBoundingClientRect();
+  const p = clamp((window.innerHeight * .72 - rect.top) / (window.innerHeight * .55 + rect.height));
+  bridge.style.setProperty('--bridge-draw', p.toFixed(4));
+  bridgeCards.forEach((card, i) => {
+    card.classList.toggle('is-active', p >= (i + .3) / 4);
+  });
+}
+
 function updateStudio(progress) {
   const p = clamp(progress);
   const current = p < .33 ? 0 : p < .68 ? 1 : 2;
@@ -136,7 +147,9 @@ function updateStudio(progress) {
   const scale = lerp(.91, 1, arrival);
   const mobile = mediaMobile.matches;
   storyStudio.style.opacity = arrival.toFixed(3);
-  storyStudio.style.transform = 'translate(-50%, -50%) scale(' + scale.toFixed(3) + ')';
+  storyStudio.style.transform = mobile ?
+    'scale(' + scale.toFixed(3) + ')' :
+    'translate(-50%, -50%) scale(' + scale.toFixed(3) + ')';
   resultTrace.style.strokeDashoffset = (1 - ease(.14, .40, p)).toFixed(4);
   resultBranches.style.opacity = ease(.68, .76, p).toFixed(3);
   studioProgressFill.style.width = (100 * p).toFixed(2) + '%';
@@ -197,13 +210,18 @@ function render() {
     momentDescription.textContent = storyMessages[4];
     studioStepDescription.textContent = studioSteps[2].description;
     studioStage.dataset.studioMode = 'validate';
+    bridge.style.setProperty('--bridge-draw', '1');
+    bridge.classList.remove('is-scroll-ready');
+    bridgeCards.forEach(card => card.classList.add('is-active'));
     typedQuestion.textContent = question;
     conversationStage.dataset.moment = '4';
     return;
   }
   document.body.classList.remove('reduced-motion');
+  bridge.classList.add('is-scroll-ready');
   setDeepHeader();
   animateDive(progressOf(diveTrack));
+  updateBridge();
   updateStudio(progressOf(studioTrack));
   updateStory(progressOf(conversationTrack));
 }

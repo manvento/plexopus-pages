@@ -28,13 +28,15 @@ Aprire `http://localhost:8000/concept/`. In alternativa visualizzare i file di q
 - No framework, no GSAP, no tracking, no font o immagini di terze parti.
 - File separati `index.html`, `story.css`, `story.js`. Riutilizzo di token, simbolo e favicon ufficiali senza alterarli.
 - Timeline legate allo scroll e reversibili, singolo handler passivo e `requestAnimationFrame`.
+- Le scene restano visivamente **sott'acqua dalla discesa fino alla chiusura**: il vecchio intermezzo bianco è diventato un passaggio di fondale con rete SVG e quattro capacità che si illuminano progressivamente mentre scorri.
+- Lo stage mobile di **Studio usa righe di layout distinte** (titolo, descrizione, mappa, progress, nota), non più posizionamenti percentuali separati che causavano sovrapposizione su iPhone.
 - Scene e testi adattati per smartphone; layout statico `prefers-reduced-motion`.
 - `noindex,nofollow` per non indicizzare il concept.
 - Linguaggio di marketing: nessuna promessa di simulazione fisica, impatto idraulico certo o manovre automatiche; MCP autenticato con permessi per rete.
 
 ## Gate prima di una release
 
-- [ ] Test visuale su iPhone Safari, incluso landscape, barra browser e scroll inverso
+- [ ] Test visuale su iPhone Safari, incluso landscape, barra browser e scroll inverso: confermare nessuna sovrapposizione tra testo e mappa Studio
 - [ ] Desktop Safari/Chromium, tablet e split screen
 - [ ] Controllo che Studio mostri adeguatamente **esplorazione** e **gestione**, non soltanto tracing
 - [ ] Verifica accessibilità, contrasto, focus, layout a movimento ridotto
