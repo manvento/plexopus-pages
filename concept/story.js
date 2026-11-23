@@ -172,6 +172,10 @@ function updateBridge(progress) {
   paintDepth(bridgeStage, [9, 36, 49], [7, 27, 39], p);
   bridgeStage.style.setProperty('--bridge-path-draw', ease(.04, .92, local).toFixed(4));
   bridgeStage.style.setProperty('--bridge-effect', ease(.44, .9, local).toFixed(4));
+  // During step 02, one diagram gradually changes state instead of switching screenshots.
+  const closure = current === 1 ? local : 0;
+  bridgeStage.style.setProperty('--closure-valve', ease(.22, .47, closure).toFixed(4));
+  bridgeStage.style.setProperty('--closure-affected', ease(.46, .82, closure).toFixed(4));
   bridgeProgressFill.style.width = (p * 100).toFixed(2) + '%';
   if (current !== oldBridgeStep) {
     oldBridgeStep = current;

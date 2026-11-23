@@ -903,3 +903,53 @@ html.has-scroll-story .bridge{height:365svh}
 @media(prefers-reduced-motion:reduce){
   .bridge-values{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+
+/* Scenario 02: ONE network, scrubbed from all-reachable to a temporary closure.
+   The downstream paths remain in the same positions before and after. */
+.bridge-stage{--closure-valve:0;--closure-affected:0}
+/* The SVG inherits the animated custom properties from its pinned stage. */
+.cap-closure-backbone{
+  fill:none;stroke:#4a7180;stroke-width:9;stroke-linecap:round;stroke-linejoin:round;
+}
+.cap-closure-reached,.cap-closure-before{
+  fill:none;stroke:#61dfd6;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;
+}
+.cap-closure-before{opacity:calc(1 - var(--closure-affected,0))}
+.cap-closure-after{
+  fill:none;stroke:#ffb475;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:8 8;opacity:var(--closure-affected,0);
+}
+.cap-closure-nodes circle{fill:#0d3441;stroke:#8ce5da;stroke-width:3}
+.cap-closure-valve-ring{
+  fill:#102e3b;stroke:#a6e6de;stroke-width:3;
+  stroke-opacity:calc(1 - var(--closure-valve,0));
+}
+.cap-closure-valve-cross{
+  fill:none;stroke:#ffcf9e;stroke-width:3;stroke-linecap:round;
+  opacity:var(--closure-valve,0);
+}
+.cap-closure-valve-glow{
+  fill:none;stroke:#ffb475;stroke-width:2;stroke-dasharray:4 5;
+  opacity:var(--closure-valve,0);
+}
+.cap-closure-label-before,.cap-closure-legend-before{opacity:calc(1 - var(--closure-affected,0))}
+.cap-closure-label-after,.cap-closure-legend-after{opacity:var(--closure-affected,0)}
+.cap-phase{fill:#bfe5e1;font:700 12px var(--px-font-sans,sans-serif);letter-spacing:.06em}
+.cap-legend-bg{fill:#123d4b;stroke:#3e7079;stroke-width:1.2}
+.cap-legend-text{fill:#daede9;font:600 10px var(--px-font-sans,sans-serif)}
+@media(prefers-reduced-motion:reduce){
+  .cap-closure-diagram{--closure-valve:1;--closure-affected:1}
+  /* Every diagram is available without needing to scroll through pinned motion. */
+  .bridge-inner{height:auto;display:flex;flex-direction:column;align-items:stretch}
+  .bridge-flow{height:auto;max-height:none;min-height:0;display:grid;gap:12px}
+  .bridge-flow [data-bridge-scene],
+  .bridge-stage .bridge-flow [data-bridge-scene="0"]{
+    position:relative;inset:auto;visibility:visible;opacity:1;
+    display:block;width:100%;height:auto;max-height:220px;
+  }
+  .bridge-values{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(prefers-reduced-motion:reduce) and (max-width:820px){
+  .bridge-values{grid-template-columns:1fr}
+}

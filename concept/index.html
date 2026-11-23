@@ -58,7 +58,7 @@
         <div class="sun-shimmer" aria-hidden="true"></div>
         <div class="light-beams" aria-hidden="true"><i></i><i></i><i></i></div>
         <div class="sea-particles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="depth-indicator" aria-hidden="true"><span>SUPERFICIE</span><div class="depth-track"><span id="depth-progress"></span></div><span>FONDALE</span></div>
+        <div class="depth-indicator" aria-hidden="true"><div class="depth-track"><span id="depth-progress"></span></div></div>
 
         <div class="dive-copy">
           <p class="overline light">CAPITOLO 01 / IL VIAGGIO</p>
@@ -115,17 +115,47 @@
  <g class="cap-nodes"><circle cx="34" cy="115" r="10"/><circle cx="130" cy="115" r="8"/><circle cx="215" cy="64" r="11"/><circle cx="355" cy="64" r="8"/><circle cx="465" cy="29" r="10"/><circle cx="215" cy="155" r="8"/><circle cx="359" cy="155" r="9"/><circle cx="545" cy="184" r="11"/></g>
  <g class="cap-labels"><text x="14" y="96">ORIGINE</text><text x="203" y="41">V-102</text><text x="469" y="19">RAMO A</text><text x="501" y="208">RAMO B</text></g>
 </svg>
-<svg data-bridge-scene="1" viewBox="0 0 620 216" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
- <rect x="5" y="10" width="295" height="190" rx="14" class="cap-panel"/>
- <rect x="320" y="10" width="295" height="190" rx="14" class="cap-panel"/>
- <text x="25" y="39" class="cap-heading">PRIMA</text><text x="340" y="39" class="cap-heading">DOPO LA CHIUSURA</text>
- <path d="M25 103H110L180 69H270M180 69V160H275" class="cap-base"/>
- <path d="M25 103H110L180 69H270M180 69V160H275" class="cap-ink" pathLength="1"/>
- <path d="M340 103H418" class="cap-reached"/>
- <path d="M418 103L495 69H586M495 69V160H587" class="cap-unreached"/>
- <circle cx="418" cy="103" r="14" class="cap-barrier"/>
- <path d="m412 97 12 12m0-12-12 12" class="cap-cross"/>
- <g class="cap-labels"><text x="26" y="186">Percorsi raggiungibili</text><text x="341" y="186">Rami non più raggiunti</text></g>
+<svg data-bridge-scene="1" class="cap-closure-diagram" viewBox="0 0 620 216" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+  <text x="24" y="27" class="cap-heading">SCENARIO DI RETE</text>
+  <text x="596" y="27" text-anchor="end" class="cap-phase cap-closure-label-before">RETE ORIGINALE</text>
+  <text x="596" y="27" text-anchor="end" class="cap-phase cap-closure-label-after">CHIUSURA IPOTETICA</text>
+  <!-- One persistent network; only its connectivity state changes with scroll. -->
+  <path d="M36 105H141L250 105H365L468 64H572M365 105L468 165H572M141 105V173H74"
+        class="cap-closure-backbone"/>
+  <!-- Upstream and a separate branch remain reachable from the selected origin. -->
+  <path d="M36 105H141L250 105M141 105V173H74" class="cap-closure-reached"/>
+  <!-- The same branches change from reachable to disconnected AFTER the valve closes. -->
+  <path d="M250 105H365L468 64H572M365 105L468 165H572" class="cap-closure-before"/>
+  <path d="M250 105H365L468 64H572M365 105L468 165H572" class="cap-closure-after"/>
+  <g class="cap-closure-nodes">
+    <circle cx="36" cy="105" r="10"/><circle cx="141" cy="105" r="8"/>
+    <circle cx="365" cy="105" r="9"/><circle cx="468" cy="64" r="8"/>
+    <circle cx="572" cy="64" r="11"/><circle cx="468" cy="165" r="8"/>
+    <circle cx="572" cy="165" r="11"/><circle cx="74" cy="173" r="8"/>
+  </g>
+  <g class="cap-closure-valve">
+    <circle cx="250" cy="105" r="17" class="cap-closure-valve-ring"/>
+    <path d="M244 99L256 111M256 99L244 111" class="cap-closure-valve-cross"/>
+    <circle cx="250" cy="105" r="28" class="cap-closure-valve-glow"/>
+  </g>
+  <g class="cap-labels">
+    <text x="16" y="82">ORIGINE</text>
+    <text x="233" y="67">V-102</text>
+    <text x="526" y="47">RAMO A</text>
+    <text x="529" y="192">RAMO B</text>
+  </g>
+  <g class="cap-closure-explanation cap-closure-legend-before">
+    <rect x="21" y="184" width="205" height="27" rx="13" class="cap-legend-bg"/>
+    <circle cx="37" cy="197" r="5" fill="#61dfd6"/>
+    <text x="51" y="202" class="cap-legend-text">Tutti i percorsi raggiungibili</text>
+  </g>
+  <g class="cap-closure-explanation cap-closure-legend-after">
+    <rect x="21" y="184" width="235" height="27" rx="13" class="cap-legend-bg"/>
+    <circle cx="37" cy="197" r="5" fill="#61dfd6"/>
+    <text x="51" y="202" class="cap-legend-text">Raggiungibile</text>
+    <circle cx="139" cy="197" r="5" fill="#ffb475"/>
+    <text x="153" y="202" class="cap-legend-text">Non raggiunto</text>
+  </g>
 </svg>
 <svg data-bridge-scene="2" viewBox="0 0 620 216" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
  <text x="24" y="26" class="cap-heading">ALIMENTAZIONI ESPLICITE</text>

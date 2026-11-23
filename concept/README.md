@@ -75,3 +75,10 @@ La classe `.bridge` aveva `overflow:hidden` applicato **al contenitore di scroll
 - Il capitolo sulle **capacità del motore** ora presenta tre esempi strettamente legati alla rete: tracing, confronto scenari e isolamento. Le integrazioni non sono più il quarto schema a raggiera.
 - È stato aggiunto un **capitolo autonomo dopo l'assistente AI**, dedicato alla natura integrabile di Plexopus, con stratificazione verticale della rete → Core → REST/MCP → applicazioni e flussi luminosi nello stile del fondale. Lo scroll fa emergere prima il motore, poi le interfacce e infine le applicazioni GIS/non-GIS.
 - Anche questa visualizzazione è un concept: nessun software è effettivamente collegato nel prototipo. La homepage pubblicata resta intatta.
+
+## Revisione 07 — Scenario in una sola rete e immersione pulita
+
+- Capitolo 01: rimossi i testi «SUPERFICIE» e «FONDALE» dall'indicatore laterale, mantenendo la linea di progressione della profondità.
+- Capitolo 02 / step 02: sostituiti i due riquadri separati prima/dopo con **un unico diagramma SVG persistente**. Il percorso parte completamente raggiungibile; avanzando nello scroll la valvola V-102 si chiude soltanto nello scenario ipotetico, e gli stessi rami a valle passano da verde a tracciato arancione tratteggiato, non più raggiungibile dall'origine S1. La topologia non salta di posizione e tornando indietro lo stato si riavvolge.
+- Contenuti esemplificativi, nessuna simulazione fisica o comando reale. Per utenti con movimento ridotto, lo schema mostra direttamente lo stato finale e il testo esplicita il caso d'uso.
+- QA visivo da completare su iPhone Safari (scroll avanti/indietro nello step 02) e desktop.
