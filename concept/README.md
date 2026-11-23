@@ -27,7 +27,7 @@ Then open http://localhost:8000/concept/. To preview this specific Git commit wi
 - Plain HTML / CSS / JavaScript, no GSAP, external images, third-party fonts, CDNs, analytics, API calls or bundling. This is deliberately dependency-free; a library may be evaluated later if the project needs a more elaborate production timeline.
 - Scroll progress is calculated from a sticky section's travel range; a single passive scroll listener schedules a coalesced \`requestAnimationFrame\`. Geometry/style properties are updated from progress, so scrolling upward reverses each sequence.
 - The page uses Plexopus Design System foundations via \`../assets/tokens.css\` and the unchanged official \`../assets/plexopus-symbol-128.png\`.
-- On narrow viewports, Studio appears in place of the phone, rather than requiring an impractically wide side-by-side composition.
+- On narrow viewports, the smartphone leaves the frame fully before a brief MCP transfer cue appears; Plexopus Studio then enters alone. The transition is sequential on desktop too, without overlapping devices. The chat typing and first underwater descent are unchanged.
 - \`prefers-reduced-motion\` disables the scroll effects and presents a simplified static layout with the full example.
 - No fake production result is claimed: the network paths and response are placeholders; the ChatGPT ⇄ Studio linked-tab handoff is a **feature-gated pilot**, subject to real integration sign-off, login and network permissions.
 - \`noindex, nofollow\` explicitly prevents the prototype page being promoted as a production marketing destination.
@@ -35,7 +35,7 @@ Then open http://localhost:8000/concept/. To preview this specific Git commit wi
 ## Review checklist
 
 - [ ] Desktop: full forward/reverse scroll of both scenes in Safari and Chromium.
-- [ ] iPhone Safari portrait and landscape: legible copy, clear phone/Studio transition, no clipping or scroll trap.
+- [ ] iPhone Safari portrait and landscape: legible copy, validate the exclusive phone-exit → transfer cue → Studio-entry handoff, no clipping or scroll trap.
 - [ ] iPad/tablet, narrow split-screen, browser reflow, screen zoom.
 - [ ] \`prefers-reduced-motion\`: static sections remain useful, no motion essential to meaning.
 - [ ] Keyboard-only navigation, focus indicators, VoiceOver screen-reader flow and color contrast.
