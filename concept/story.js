@@ -111,14 +111,14 @@ function updateStory(progress) {
   const mobile = mediaMobile.matches;
   const arrival = ease(.02, .18, p);
   // Exclusive phases: the phone fully exits BEFORE the new Studio scene enters.
-  const phoneExit = ease(.75, .83, p);
+  const phoneExit = ease(.70, .78, p);
   const scale = mobile ? lerp(.63, .78, arrival) : lerp(.74, 1, arrival);
   const rotate = lerp(-9, 0, arrival) + lerp(0, mobile ? 7 : -5, phoneExit);
   storyPhone.style.left = (mobile ? lerp(50, 118, phoneExit) : lerp(45, -28, phoneExit)).toFixed(2) + '%';
   storyPhone.style.transform = 'translate(-50%, -50%) scale(' +
     (scale * lerp(1, .77, phoneExit)).toFixed(3) +
     ') rotate(' + rotate.toFixed(2) + 'deg)';
-  storyPhone.style.opacity = (1 - ease(.76, .83, p)).toFixed(3);
+  storyPhone.style.opacity = (1 - ease(.71, .78, p)).toFixed(3);
 
   const typedPortion = ease(.16, .38, p);
   typedQuestion.textContent = question.slice(0, Math.round(question.length * typedPortion));
@@ -131,12 +131,12 @@ function updateStory(progress) {
   phoneResult.style.transform = 'translateY(' + lerp(12, 0, ease(.53, .64, p)).toFixed(1) + 'px)';
 
   // A brief MCP transfer confirmation fills the gap between the two devices.
-  const transferIn = ease(.83, .85, p);
-  const transferOut = ease(.875, .895, p);
+  const transferIn = ease(.78, .795, p);
+  const transferOut = ease(.815, .83, p);
   handoffStatus.style.opacity = (transferIn * (1 - transferOut)).toFixed(3);
   handoffStatus.style.transform = 'translate(-50%, -50%) scale(' +
     lerp(.92, 1, transferIn).toFixed(3) + ')';
-  const revealStudio = ease(.895, .975, p);
+  const revealStudio = ease(.83, .91, p);
   storyStudio.style.opacity = revealStudio.toFixed(3);
   storyStudio.style.transform = mobile ?
     'translate(calc(-50% + ' + lerp(-65, 0, revealStudio).toFixed(1) +
@@ -144,8 +144,8 @@ function updateStory(progress) {
     'translate(' + lerp(110, 0, revealStudio).toFixed(1) +
     'px, -50%) scale(' + lerp(.83, 1, revealStudio).toFixed(3) + ')';
 
-  resultTrace.style.strokeDashoffset = (1 - ease(.915, .987, p)).toFixed(4);
-  resultBranches.style.opacity = ease(.945, .994, p).toFixed(3);
+  resultTrace.style.strokeDashoffset = (1 - ease(.86, .95, p)).toFixed(4);
+  resultBranches.style.opacity = ease(.88, .96, p).toFixed(3);
   bottomTimeline.style.width = (p * 100).toFixed(2) + '%';
 }
 
