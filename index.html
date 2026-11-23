@@ -50,22 +50,64 @@
 <section class="section lab-section" id="capabilities"><div class="container"><div class="section-head"><p class="eyebrow">EXPLORE THE POSSIBILITIES</p><h2>A closer look at the network.</h2><p>Three different questions. One consistent engine that keeps the analysis grounded in network rules and connections.</p></div><div class="lab-grid"><div class="lab-menu"><button class="lab-choice" type="button" data-lab="0" aria-pressed="true"><span class="n">01</span><span><strong>Follow connections</strong><small>Explore reachable elements and their relationships.</small></span></button>
 <button class="lab-choice" type="button" data-lab="1" aria-pressed="false"><span class="n">02</span><span><strong>Try a closure</strong><small>Compare connectivity before and after a temporary barrier.</small></span></button>
 <button class="lab-choice" type="button" data-lab="2" aria-pressed="false"><span class="n">03</span><span><strong>Plan isolation</strong><small>Evaluate candidate devices with declared sources.</small></span></button></div>
-<div class="lab-visual" id="lab-visual" data-mode="connect" data-titles="Follow the network|||Try a closure|||Plan an isolation" data-texts="Explore the paths supported by the network model. Directional tracing is defined by the model, not by the shape of the lines.|||A temporary barrier changes the analysis scenario only. Compare it with the baseline; no device is operated.|||Proposed devices are verified against declared supplies. A valid plan is not a physical flow simulation or a globally optimal switching guarantee.">
+<div class="lab-visual" id="lab-visual" data-mode="connect" data-titles="Follow the network|||Try a closure|||Plan an isolation" data-texts="Explore the paths supported by the network model. Directional tracing is defined by the model, not by the shape of the lines.|||A temporary barrier lets you compare reachability from the same starting point, before and after a proposed closure. No field operation is performed.|||An isolation plan proposes eligible devices for an explicit target and declared supplies. Review the assumptions: this is not a physical simulation or a globally optimal switching guarantee." data-graph-descriptions="A single network diagram with highlighted paths reachable from the chosen starting point.|||Side-by-side comparison: the original network and a temporary valve closure, showing the branches no longer reachable from the same start.|||An isolation plan: two explicit supply nodes, an isolated target pipe, and two proposed isolation devices.">
 <div class="lab-top"><span>PLEXOPUS / TRACE ENGINE</span><span>01 — 03</span></div>
-<svg class="lab-graph" viewBox="0 0 520 265" role="img" aria-labelledby="graph-title graph-desc"><title id="graph-title">Illustrative network nodes and connections</title><desc id="graph-desc">Paths and temporary barriers shown schematically</desc>
-<defs><pattern id="graphgrid" width="26" height="26" patternUnits="userSpaceOnUse"><path d="M26 0H0V26" fill="none" stroke="#84afb4" stroke-opacity=".10" stroke-width="1"/></pattern></defs><rect x="0" y="0" width="520" height="265" rx="10" fill="url(#graphgrid)"/>
-<g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" class="graph-base"><path d="M62 143H158L242 103H359L454 56"/><path d="M242 103V195H355L451 220"/><path d="M158 143V218L82 235"/></g>
-<g fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" class="graph-accent" id="lab-accent"><path d="M158 143L242 103H359L454 56"/><path d="M242 103V195H355L451 220"/></g>
-<g class="graph-points"><circle cx="62" cy="143" r="10"/><circle cx="158" cy="143" r="7"/><circle cx="242" cy="103" r="8"/><circle cx="359" cy="103" r="7"/><circle cx="454" cy="56" r="10"/><circle cx="242" cy="195" r="8"/><circle cx="355" cy="195" r="8"/><circle cx="451" cy="220" r="9"/><circle cx="82" cy="235" r="8"/></g>
-<circle class="graph-valve" cx="242" cy="103" r="18"/><path d="m236 97 12 12m0-12-12 12" fill="none" stroke="#ffb475" stroke-width="2.5"/>
-<g class="graph-labels"><text x="42" y="123">Source</text><text x="227" y="75">V-102</text><text x="415" y="36">A</text><text x="452" y="249">B</text></g></svg>
+<svg class="lab-graph" viewBox="0 0 520 265" role="img" aria-labelledby="graph-title graph-desc">
+<title id="graph-title">Follow the network</title><desc id="graph-desc">A single network diagram with highlighted paths reachable from the chosen starting point.</desc>
+<defs><pattern id="graphgrid" width="26" height="26" patternUnits="userSpaceOnUse"><path d="M26 0H0V26" fill="none" stroke="#84afb4" stroke-opacity=".10" stroke-width="1"/></pattern></defs>
+<rect width="520" height="265" rx="10" fill="url(#graphgrid)"/>
+<g class="lab-scene" data-scene="connect">
+  <text x="20" y="27" class="lab-svg-top">CONNECTED TRACE</text>
+  <path d="M45 148H140L236 89H333L459 51M236 89V181H356L459 215M140 148V224H83" fill="none" stroke="#4e7882" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M45 148H140L236 89H333L459 51M236 89V181H356L459 215" fill="none" stroke="#6ee0ce" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#102f3a" stroke="#a4e4dc" stroke-width="3"><circle cx="45" cy="148" r="10"/><circle cx="140" cy="148" r="7"/><circle cx="236" cy="89" r="9"/><circle cx="333" cy="89" r="7"/><circle cx="459" cy="51" r="10"/><circle cx="236" cy="181" r="8"/><circle cx="356" cy="181" r="8"/><circle cx="459" cy="215" r="9"/></g>
+  <g class="lab-svg-detail"><text x="22" y="128">START</text><text x="411" y="32">Branch A</text><text x="420" y="241">Branch B</text></g>
+  <rect x="20" y="239" width="198" height="22" rx="11" fill="#17424d" stroke="#38686f"/><circle cx="36" cy="250" r="4" fill="#6ee0ce"/><text x="48" y="254" class="lab-svg-legend">Reachable network</text>
+</g>
+<g class="lab-scene" data-scene="closure">
+  <rect x="8" y="22" width="244" height="224" rx="13" fill="#123844" stroke="#3e6b72"/>
+  <rect x="268" y="22" width="244" height="224" rx="13" fill="#123844" stroke="#3e6b72"/>
+  <text x="24" y="48" class="lab-svg-top">BEFORE</text><text x="285" y="48" class="lab-svg-top">WITH CLOSURE</text>
+  <!-- Panel 1: baseline network -->
+  <path d="M36 139H110L174 97H224M174 97V186H222" fill="none" stroke="#67d5c5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#10303d" stroke="#a9e4dc" stroke-width="3"><circle cx="36" cy="139" r="8"/><circle cx="110" cy="139" r="10"/><circle cx="174" cy="97" r="7"/><circle cx="224" cy="97" r="8"/><circle cx="222" cy="186" r="8"/></g>
+  <text x="22" y="222" class="lab-svg-detail">Reachable from start</text>
+  <!-- Panel 2: same network after a temporary closure -->
+  <path d="M296 139H371" fill="none" stroke="#67d5c5" stroke-width="6" stroke-linecap="round"/>
+  <path d="M371 139L433 97H485M433 97V186H483" fill="none" stroke="#efae75" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 7" opacity=".95"/>
+  <g fill="#10303d" stroke="#a9e4dc" stroke-width="3"><circle cx="296" cy="139" r="8"/><circle cx="433" cy="97" r="7"/></g>
+  <g fill="#10303d" stroke="#efae75" stroke-width="3"><circle cx="371" cy="139" r="12"/><circle cx="485" cy="97" r="8"/><circle cx="483" cy="186" r="8"/></g>
+  <path d="m365 133 12 12m0-12-12 12" fill="none" stroke="#ffcb91" stroke-width="2.5" stroke-linecap="round"/>
+  <text x="283" y="222" class="lab-svg-detail">No longer reached</text>
+  <rect x="327" y="158" width="128" height="21" rx="10" fill="#3e3430" stroke="#8a6243"/><text x="339" y="172" class="lab-svg-legend">V-102 · temporary</text>
+</g>
+<g class="lab-scene" data-scene="isolate">
+  <text x="18" y="26" class="lab-svg-top">ISOLATION PLAN</text>
+  <text x="18" y="50" class="lab-svg-meta">DECLARED SUPPLIES</text>
+  <!-- Two explicit supply feeds converging on one target -->
+  <path d="M55 97H199L317 143H445M55 199H199L317 143" fill="none" stroke="#547e88" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M55 97H199M55 199H199" fill="none" stroke="#6cddca" stroke-width="5" stroke-linecap="round"/>
+  <path d="M199 97L317 143H445M199 199L317 143" fill="none" stroke="#eeae77" stroke-width="5" stroke-dasharray="6 7" stroke-linecap="round"/>
+  <g fill="#092b39" stroke="#78ddce" stroke-width="3"><circle cx="55" cy="97" r="11"/><circle cx="55" cy="199" r="11"/></g>
+  <g fill="#172f3b" stroke="#ffbd81" stroke-width="3"><circle cx="199" cy="97" r="14"/><circle cx="199" cy="199" r="14"/></g>
+  <path d="m193 91 12 12m0-12-12 12M193 193l12 12m0-12-12 12" fill="none" stroke="#ffcb91" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="415" y="129" width="53" height="27" rx="7" fill="#4b3932" stroke="#ffbd81" stroke-width="2.5"/>
+  <text x="423" y="146" class="lab-svg-legend" fill="#fff0df">P-17</text>
+  <text x="20" y="75" class="lab-svg-detail">SUPPLY S1</text><text x="20" y="230" class="lab-svg-detail">SUPPLY S2</text>
+  <text x="180" y="76" class="lab-svg-meta">V-12</text><text x="180" y="225" class="lab-svg-meta">V-16</text>
+  <text x="398" y="110" class="lab-svg-detail">TARGET P-17</text>
+  <rect x="276" y="191" width="220" height="63" rx="10" fill="#143d49" stroke="#426e73"/>
+  <text x="288" y="211" class="lab-svg-top">PROPOSED DEVICES</text>
+  <g fill="#ffbf87"><circle cx="290" cy="229" r="4"/><circle cx="369" cy="229" r="4"/></g>
+  <text x="302" y="234" class="lab-svg-legend">V-12</text><text x="381" y="234" class="lab-svg-legend">V-16</text>
+</g></svg>
 <div class="lab-result"><strong id="lab-result-title">Follow the network</strong><p id="lab-result-text" aria-live="polite">Explore the paths supported by the network model. Directional tracing is defined by the model, not by the shape of the lines.</p></div>
 <p class="lab-disclaimer">Conceptual network illustration — not a live model or a physical-flow simulation.</p></div></div></div></section>
 <section class="section workbench-section" id="experience"><div class="container workbench-grid"><div><div class="section-head"><p class="eyebrow">MADE FOR PEOPLE</p><h2>Meet Plexopus Studio.<br>Network work, made clearer.</h2><p>Explore your network on a clear map, select an asset and follow guided operations. Move from network exploration to model editing, validation and change review without losing context.</p></div><div class="workbench-notes"><p>A map-first workspace with a floating search and contextual actions.</p><p>Guided analysis plus Model, Build, Rules and Validate.</p><p>Responsive layouts with accessible keyboard and touch controls.</p></div></div>
 <div><div class="workbench-visual" role="img" aria-label="Illustration of map-first interface with search and contextual card">
 <svg class="workbench-map" viewBox="0 0 550 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><path d="M0 0H550V380H0Z" fill="#e4eee5"/><path d="M-40 105Q150 -30 300 80T600 95M-30 255Q140 200 330 300T600 265" fill="none" stroke="#d7d3be" stroke-width="36"/><path d="M-40 105Q150 -30 300 80T600 95M-30 255Q140 200 330 300T600 265" fill="none" stroke="#f9fbf7" stroke-width="23"/><path d="M-20 157L110 137L202 190L315 160L468 204L555 168M202 190L252 285L393 315" fill="none" stroke="#238878" stroke-width="5"/><g fill="#fff" stroke="#238878" stroke-width="3"><circle cx="110" cy="137" r="8"/><circle cx="202" cy="190" r="10"/><circle cx="315" cy="160" r="8"/><circle cx="468" cy="204" r="8"/><circle cx="252" cy="285" r="8"/><circle cx="393" cy="315" r="8"/></g><text x="330" y="100" fill="#7d9a90" font-size="22" font-weight="600">Sedegliano</text></svg>
 <div class="wb-search"><img src="./assets/plexopus-symbol-128.png" alt=""><span>Search an element or an action…</span><b aria-hidden="true">◉</b></div>
-<div class="wb-card"><small>SELECTED ELEMENT</small><strong>Valve V-102</strong><div class="wb-actions"><span>Explore</span><span>Try closure</span></div></div></div><p class="wb-caption">Concept illustration of the Studio map-first workspace.</p><figure class="studio-login-example"><img src="./assets/studio-login-light-en.png" alt="Actual Plexopus Studio sign-in screen on desktop, in English" loading="lazy" width="1280" height="800"><figcaption>Actual Plexopus Studio sign-in screen, using the approved design system.</figcaption></figure></div></div></section>
+<div class="wb-card"><small>SELECTED ELEMENT</small><strong>Valve V-102</strong><div class="wb-actions"><span>Explore</span><span>Try closure</span></div></div></div><p class="wb-caption">Concept illustration of the Studio map-first workspace.</p></div></div></section>
 <section class="section studio-capabilities" id="studio-capabilities"><div class="container"><div class="section-head"><p class="eyebrow">PLEXOPUS STUDIO · GUIDED NETWORK WORKFLOWS</p><h2>From understanding to action.</h2><p>Explore, model, build and validate networks using one coherent workspace.</p></div><div class="studio-capability-grid"><article class="studio-capability"><span class="studio-capability-num" aria-hidden="true">01</span><h3>Model your network</h3><p>Define asset types, terminal paths, normalized attributes and subnetworks.</p></article>
 <article class="studio-capability"><span class="studio-capability-num" aria-hidden="true">02</span><h3>Build connections</h3><p>Create elements and connections with guided, map-aware workflows.</p></article>
 <article class="studio-capability"><span class="studio-capability-num" aria-hidden="true">03</span><h3>Review rules and data</h3><p>Explore and update connectivity rules with impact previews; validate the network and inspect issues.</p></article>

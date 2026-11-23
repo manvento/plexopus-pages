@@ -14,9 +14,9 @@ The existing binary assets in `assets/` are identical to the canonical Plexopus 
 
 The public copy focuses on Plexopus Studio guided workflows, the network engine through REST, MCP integrations with compatible AI assistants, GIS and non-GIS interoperability, and MPL-2.0. Illustration and simulated chat buttons do not call APIs, operate valves, or represent a verified network analysis.
 
-## A.4 images and claims
+## A.4 / A.4.1 illustrations and claims
 
-`assets/studio-login-light-en.png` and `assets/studio-login-light-it.png` are **unaltered** Studio screenshots copied from `manvento/plexopus` branch `integration/map-first-v1`, under `docs/web/screenshots/studio-login/` (PR #153). They illustrate the real login UI only, not the map or analysis. All other network imagery on this site remains an educational illustration and is not a product screenshot.
+The redundant Studio login screenshots have been removed from the promotional section. Studio keeps its conceptual map-first illustration; the three interactive network diagrams now have distinct visual compositions for tracing, before/after temporary closure, and explicit-supply isolation planning. They are educational examples, not server-calculated results.
 
 The ChatGPT → MCP → Studio storyboard explains the feature-gated paired-tab pilot (PR #143) with an explicit deployment/access note. It is not a site-hosted AI chat, does not perform real network analysis and does not imply general availability until the pilot is validated.
 
@@ -31,4 +31,4 @@ The ChatGPT → MCP → Studio storyboard explains the feature-gated paired-tab 
 
 No public-facing progress banners or incomplete-feature promises are used; this checklist stays internal to the repository.
 
-- [ ] Reconfirm the screenshots and Studio naming match the final shipped release. Do not publish outdated audit screenshots.
+- [ ] Validate the conceptual Studio map illustration and example scenarios against the final shipped release; no login screenshot or outdated audit image is displayed.
