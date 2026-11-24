@@ -56,7 +56,7 @@ const storyMessages = [
 const studioSteps = [
   {
     mode: 'explore', label: '01 · ESPLORA', heading: 'Seleziona. Scopri. Esplora.',
-    description: 'Tocca un elemento sulla mappa e segui i collegamenti senza perdere il contesto.',
+    description: 'Seleziona un elemento e segui i suoi collegamenti sulla mappa.',
     kicker: 'ESPLORA LA RETE', title: 'Valvola V-102',
     overlay: 'Seleziona un elemento e scopri come si collega alla rete.', status: 'Esplora i collegamenti',
     factA: 'V-102', factALabel: 'Elemento', factB: 'Traccia', factBLabel: 'Azione guidata',
@@ -64,18 +64,18 @@ const studioSteps = [
   },
   {
     mode: 'build', label: '02 · GESTISCI', heading: 'Collega due elementi, facilmente.',
-    description: 'Scegli i due estremi sulla mappa: Studio prepara una connessione da verificare prima di salvarla.',
+    description: 'Seleziona S1 e J4: Studio mostra il collegamento proposto prima di salvarlo.',
     kicker: 'BUILD · GUIDATO', title: 'Nuova connessione',
     overlay: 'I due estremi scelti compongono una proposta, senza modificare subito la rete.', status: 'Anteprima da confermare',
-    factA: '1 → 2', factALabel: 'Estremi scelti', factB: 'Bozza', factBLabel: 'Nessuna scrittura',
+    factA: 'S1 → J4', factALabel: 'Estremi scelti', factB: 'Bozza', factBLabel: 'Nessuna scrittura',
     mapIcon: '+', mapCue: 'Crea sulla mappa'
   },
   {
     mode: 'validate', label: '03 · VERIFICA', heading: 'Le anomalie diventano visibili.',
-    description: 'Esegui la validazione e apri ogni segnalazione direttamente nel suo contesto cartografico.',
+    description: 'Verifica la rete e individua sulla mappa gli elementi da controllare.',
     kicker: 'VALIDATE · RETE', title: 'Elemento da verificare',
     overlay: 'Una segnalazione viene evidenziata sulla mappa per esaminarla.', status: 'Apri il dettaglio',
-    factA: 'J-4', factALabel: 'Esempio', factB: 'Issue', factBLabel: 'Da esaminare',
+    factA: 'J4', factALabel: 'Esempio', factB: 'Issue', factBLabel: 'Da esaminare',
     mapIcon: '!', mapCue: 'Verifica e localizza'
   }
 ];

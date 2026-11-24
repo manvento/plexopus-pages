@@ -96,3 +96,11 @@ La classe `.bridge` aveva `overflow:hidden` applicato **al contenitore di scroll
 - Verifiche funzionali e responsive: file `concept/qa/smoke.mjs` per Chromium Playwright, copertura scroll pin, progressione delle scene, Studio/smartphone visibili all'ingresso, assenza di sovrapposizioni, iPhone portrait/landscape e movimento ridotto; screenshot diagnostici salvati localmente.
 - Il test è sviluppo/QA: **Playwright non è richiesto dal sito** e non si carica sul client.
 - Non è incluso un merge in `main`, non è una pubblicazione, né una traduzione definitiva.
+
+## Revisione 09 — feedback visivo finale su schermi piccoli
+
+- Le onde della copertina riutilizzano lo stesso avorio chiaro `#fbfcf8` del fondo della hero; il secondo strato termina esattamente nel colore iniziale del mare `#0c7180`. Le luci della prima discesa sfumano dall'alto per non produrre un bordo orizzontale tra sezioni.
+- L'etichetta `JUNCTION` è stata spostata fuori dal percorso verticale che la attraversava, correggendo l'interferenza testo/diagramma.
+- Il tracciato arancione Build collega **S1 (169,135)** a **J4 (404,98)**. Cerchi numerati, etichetta visiva e scheda contestuale identificano gli stessi estremi. Si tratta soltanto di una proposta illustrativa.
+- La copia dei passi Studio è stata accorciata. Descrizioni mobile principali impostate almeno a **13px**, con interlinea ~1.42, inclusi i capitoli rete, Studio, AI ed ecosistema; testi interni al mockup aumentati dove possibile.
+- I test Chromium verificano anche coerenza dei colori dell'onda, estremi Build e leggibilità mobile. Safari su iPhone reale rimane una verifica ulteriore, prima del merge.

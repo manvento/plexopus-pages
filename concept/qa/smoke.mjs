@@ -103,6 +103,20 @@ try {
       for(const href of ['./story.css','./story-scenes.css','./story-mobile.css']){
         assert.equal(await page.locator('link[href="'+href+'"]').count(),1,'missing stylesheet: '+href);
       }
+      // The sea starts exactly where the cover waves end: no mismatched flat color band.
+      const surface = await page.evaluate(() => {
+        const paths=[...document.querySelectorAll('.sea-horizon svg path')];
+        return {
+          light:paths[0]?.getAttribute('fill'), deep:paths[1]?.getAttribute('fill'),
+          label:document.querySelector('#dive .seabed-network text')?.textContent,
+          junction:[...document.querySelectorAll('#dive .seabed-network text')]
+            .find(x=>x.textContent==='JUNCTION')?.getAttribute('x')
+        };
+      });
+      assert.equal(surface.light,'#fbfcf8',name+' bright wave must match hero');
+      assert.equal(surface.deep,'#0c7180',name+' lower wave must match initial water');
+      assert.ok(Number(surface.junction)>=845,name+' JUNCTION label still crosses the pipe');
+
       // Pinning regression: the earlier "capabilities gap" was caused by overflow:hidden
       // on an ancestor of the sticky scene.
       for(const p of [.15,.49,.86]){
@@ -130,6 +144,16 @@ try {
       const studio=await geometry(page,'#story-studio');
       assert.ok(studio.opacity>=.98 && studio.width>=100 && studio.height>=100,name+' Studio starts hidden');
       await page.screenshot({path:join(output,name+'-studio.png'),animations:'disabled'});
+      // Guided Build illustrates exactly the requested link S1 -> J4, not two other nodes.
+      await scrollToProgress(page,'studio-story',.51);
+      assert.equal(await page.locator('#studio-stage').getAttribute('data-studio-mode'),'build');
+      assert.equal(await page.locator('.studio-draft-connection').getAttribute('d'),'M169 135L404 98');
+      assert.equal(await page.locator('#studio-fact-a').innerText(),'S1 → J4');
+      assert.equal(await page.locator('.studio-build-link-label').innerText(),'S1 → J4');
+      const picks=await page.locator('.studio-build-picks circle').evaluateAll(xs=>
+        xs.map(el=>[el.getAttribute('cx'),el.getAttribute('cy')]));
+      assert.deepEqual(picks,[['169','135'],['404','98']]);
+      await page.screenshot({path:join(output,name+'-studio-build.png'),animations:'disabled'});
       await scrollToProgress(page,'conversation',0);
       const phone=await geometry(page,'#story-phone');
       assert.ok(phone.opacity>=.98 && phone.width>=85 && phone.height>=150,name+' phone starts hidden');
@@ -148,6 +172,23 @@ try {
       }
       await scrollToProgress(page,'ecosystem',.85);
       assert.equal(await page.locator('#ecosystem-stage').getAttribute('data-ecosystem-step'),'2');
+      // Main narrative descriptions must remain readable on phone/tablet.
+      if (width<=820) {
+        const type=await page.evaluate(()=>{
+          const selectors=[
+            '.bridge-copy>p:last-child','.bridge-value.is-active p',
+            '.studio-story-lead','.studio-step-copy>p:last-child',
+            '.conversation-copy p','.ecosystem-lead','.ecosystem-story>p:last-child'];
+          return Object.fromEntries(selectors.map(sel=>{
+            const el=document.querySelector(sel);
+            return [sel,el?parseFloat(getComputedStyle(el).fontSize):0];
+          }));
+        });
+        for(const [selector,size] of Object.entries(type)){
+          assert.ok(size>=12.95,name+' illegible mobile description '+selector+': '+size+'px');
+        }
+      }
+
       await page.screenshot({path:join(output,name+'-ecosystem.png'),animations:'disabled'});
 
       const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);

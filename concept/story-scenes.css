@@ -666,3 +666,11 @@ html.has-scroll-story .bridge{height:365svh}
 }
 
 
+
+/* Studio Build — the proposed orange edge always connects the labeled S1 to J4.
+   Label remains outside the selected node markers and only appears in Build. */
+.studio-build-link-label{
+  opacity:0;fill:#a15e25;stroke:#f7faf6;stroke-width:3px;
+  paint-order:stroke fill;font:700 15px var(--px-font-sans,sans-serif);
+}
+.studio-stage[data-studio-mode="build"] .studio-build-link-label{opacity:1}

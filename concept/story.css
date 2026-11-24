@@ -287,3 +287,11 @@ h1,h2,h3,p{margin-top:0}
   .phone-shadow{display:none}
 }
 
+
+/* Seamless surface: wave colors match the pale cover and the first deep-water frame.
+   The light-beam layer must fade in rather than start as a sharp horizontal band. */
+.dive-stage .sun-shimmer,
+.dive-stage .light-beams{
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 120px);
+  mask-image:linear-gradient(to bottom,transparent 0%,#000 120px);
+}
