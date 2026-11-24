@@ -239,6 +239,38 @@ try {
   }
   }
 
+  // Without JavaScript, the site still offers a meaningful static version
+  // of the narrative and does not leave the original large scroll-track gaps.
+  for (const locale of ['en','it']) {
+    const staticContext=await browser.newContext({
+      viewport:{width:390,height:844},javaScriptEnabled:false
+    });
+    const staticPage=await staticContext.newPage();
+    try{
+      await staticPage.goto(baseUrl+(locale==='it'?'it/':''),{waitUntil:'load'});
+      assert.equal(await staticPage.locator('html').getAttribute('lang'),locale);
+      const noJS=await staticPage.evaluate(()=>{
+        const text=document.querySelector('.dive-stage [data-dive-caption="2"]');
+        const network=document.querySelector('.seabed-network');
+        const message=document.querySelector('.phone-question');
+        return {
+          caption:getComputedStyle(text).opacity,
+          network:getComputedStyle(network).opacity,
+          conversation:getComputedStyle(message).opacity,
+          studio:getComputedStyle(document.getElementById('story-studio')).opacity,
+          paragraphs:document.querySelectorAll('main p').length
+        };
+      });
+      for(const part of ['caption','network','conversation','studio']){
+        assert.ok(Number(noJS[part])>=.98,'static '+locale+' hides '+part);
+      }
+      assert.ok(noJS.paragraphs>=15,'static '+locale+' missing narrative text');
+      console.log('PASS '+locale+' no-JS: accessible static story');
+    } catch(error){
+      failures++; console.error('FAIL '+locale+' no-JS: '+error.stack);
+    } finally{await staticContext.close()}
+  }
+
   // Reduced motion must expose meaningful content without pinned scroll.
   const reduced=await browser.newContext({viewport:{width:390,height:844},reducedMotion:'reduce'});
   const page=await reduced.newPage();

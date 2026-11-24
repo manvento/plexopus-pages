@@ -78,3 +78,89 @@ body.is-deep .topbar .lang-switch a[aria-current="page"]{color:#e3f8f3}
 @media(prefers-reduced-motion:reduce){
  .mobile-nav nav{transition:none}
 }
+
+
+/* Progressive enhancement: without JavaScript, show useful static chapters
+   instead of leaving sticky scrollytelling tracks or hidden diagrams. */
+html:not(.has-scroll-story) .dive-track,
+html:not(.has-scroll-story) .studio-track,
+html:not(.has-scroll-story) .conversation-track,
+html:not(.has-scroll-story) .ecosystem-track{height:auto}
+html:not(.has-scroll-story) .dive-stage{
+  position:relative;height:730px;min-height:630px;
+  background:#0b3543
+}
+html:not(.has-scroll-story) .dive-stage [data-dive-caption="2"]{opacity:1}
+html:not(.has-scroll-story) .dive-stage [data-dive-caption="0"],
+html:not(.has-scroll-story) .dive-stage [data-dive-caption="1"]{display:none}
+html:not(.has-scroll-story) .seabed-network{opacity:1;transform:none}
+html:not(.has-scroll-story) .seabed-highlight{stroke-dashoffset:0}
+html:not(.has-scroll-story) .bridge-stage{position:relative;overflow:hidden}
+html:not(.has-scroll-story) .bridge-stage .bridge-inner{height:auto}
+html:not(.has-scroll-story) .bridge-stage [data-bridge-scene="0"]{
+  visibility:visible;opacity:1;position:relative;display:block
+}
+html:not(.has-scroll-story) .bridge-value{opacity:1;transform:none}
+html:not(.has-scroll-story) .studio-stage{position:relative;height:850px;min-height:850px}
+html:not(.has-scroll-story) .studio-stage .studio{opacity:1}
+html:not(.has-scroll-story) .studio-stage .studio-network-trace{stroke-dashoffset:0}
+html:not(.has-scroll-story) .studio-stage .studio-explore-focus{opacity:1}
+html:not(.has-scroll-story) .conversation-stage{position:relative;height:820px;min-height:820px}
+html:not(.has-scroll-story) .phone-welcome{display:none}
+html:not(.has-scroll-story) .phone-question,
+html:not(.has-scroll-story) .phone-tool,
+html:not(.has-scroll-story) .phone-result{opacity:1;transform:none}
+html:not(.has-scroll-story) #typed-question:empty:before{
+  content:"Se chiudo la valvola V-102, quali tratti non sono più raggiungibili dal nodo S1?"
+}
+html[lang="en"]:not(.has-scroll-story) #typed-question:empty:before{
+  content:"If I close valve V-102, which segments are no longer reachable from node S1?"
+}
+html:not(.has-scroll-story) .ecosystem-stage{
+  position:relative;height:860px;min-height:860px;background:#03101c
+}
+html:not(.has-scroll-story) .ecosystem-stage .eco-services,
+html:not(.has-scroll-story) .ecosystem-stage .eco-destinations{opacity:1;transform:none}
+@media(max-width:820px){
+  html:not(.has-scroll-story) .dive-stage{height:690px;min-height:690px}
+  html:not(.has-scroll-story) .studio-stage{
+    display:grid;grid-template-rows:auto auto minmax(180px,1fr) auto auto;
+    min-height:850px;height:auto
+  }
+  html:not(.has-scroll-story) .studio-theatre{height:310px}
+  html:not(.has-scroll-story) .conversation-stage{
+    display:flex;flex-direction:column;min-height:930px;height:auto;
+    padding:95px 20px 60px;gap:15px
+  }
+  html:not(.has-scroll-story) .conversation-topline,
+  html:not(.has-scroll-story) .conversation-copy,
+  html:not(.has-scroll-story) .device-theatre,
+  html:not(.has-scroll-story) .progress-footer,
+  html:not(.has-scroll-story) .concept-disclaimer{
+    position:relative;inset:auto;left:auto;right:auto;top:auto;bottom:auto;
+    width:100%;height:auto;margin:0
+  }
+  html:not(.has-scroll-story) .device-theatre{
+    flex:1;min-height:490px;display:flex;justify-content:center;align-items:center
+  }
+  html:not(.has-scroll-story) .device-theatre .phone{
+    position:relative;inset:auto;left:auto;top:auto;
+    opacity:1;transform:scale(.78);transform-origin:center
+  }
+  html:not(.has-scroll-story) .ecosystem-stage{
+    position:relative;height:auto;min-height:1000px;padding:95px 20px 40px
+  }
+  html:not(.has-scroll-story) .ecosystem-topline,
+  html:not(.has-scroll-story) .ecosystem-content,
+  html:not(.has-scroll-story) .ecosystem-bottom,
+  html:not(.has-scroll-story) .ecosystem-note{
+    position:relative;inset:auto;top:auto;right:auto;left:auto;
+    bottom:auto;width:auto;margin:0
+  }
+  html:not(.has-scroll-story) .ecosystem-content{
+    display:flex;flex-direction:column;gap:24px;margin:28px auto
+  }
+  html:not(.has-scroll-story) .ecosystem-visual{
+    width:100%;max-width:700px;height:440px;min-height:440px
+  }
+}
