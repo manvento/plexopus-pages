@@ -1,0 +1,80 @@
+
+/* Plexopus official web experience (EN/IT). Loaded after the story's approved
+   base → chapters → mobile cascade. No dependencies or external requests. */
+html{scroll-padding-top:80px}
+html,body{width:100%;max-width:100%}
+.topbar{gap:clamp(12px,1.8vw,30px)}
+.topbar .topbar-nav{display:flex;gap:clamp(10px,1.55vw,27px);margin-left:auto;align-items:center}
+.topbar .topbar-nav .topbar-link{font-size:13px;white-space:nowrap}
+.topbar .lang-switch{
+  margin:0 0 0 4px;display:flex;gap:8px;align-items:center;
+  font-size:12px;font-weight:750;white-space:nowrap;
+  padding:0 0 0 18px;border-left:1px solid #a6bdbd80;
+}
+.topbar .lang-switch a{display:grid;place-items:center;min-width:30px;min-height:44px;text-decoration:none;color:#65858a}
+.topbar .lang-switch a[aria-current="page"]{color:#083640;text-decoration:underline;text-underline-offset:5px}
+.topbar .lang-switch a:hover{color:var(--teal)}
+body.is-deep .topbar .lang-switch{border-color:#77a8a85e}
+body.is-deep .topbar .lang-switch a{color:#a7cdca}
+body.is-deep .topbar .lang-switch a[aria-current="page"]{color:#e3f8f3}
+.mobile-nav{display:none}
+.open-source-note{
+  position:relative;z-index:2;margin:48px auto 0;max-width:710px;
+  padding:25px 15px 0;border-top:1px solid #64a9a973;color:#c6e1dd;
+  font-size:14px;line-height:1.6;
+}
+.open-source-note strong{color:#e9f9f5}
+.open-source-note p{line-height:1.6;margin:0 0 12px}
+.open-source-note a{display:inline-block;color:#71e1d4;padding:7px 0;text-underline-offset:4px;text-decoration:underline}
+.open-source-note a:hover{color:#c5fff6}
+.closing-footnote{padding-top:38px}
+.site-footer{
+  background:#020910;color:#b1d6d1;padding:26px clamp(22px,5vw,88px);
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+  font-size:12px;border-top:1px solid #1d4a5075;
+}
+.site-footer nav{display:flex;gap:clamp(12px,2.5vw,30px);align-items:center;flex-wrap:wrap}
+.site-footer a{text-decoration:none;color:#b5ddd6;font-size:12px}
+.site-footer a:hover{text-decoration:underline;color:#fff;text-underline-offset:4px}
+.site-footer a:focus-visible,.lang-switch a:focus-visible{outline:3px solid var(--apricot);outline-offset:4px}
+@media(max-width:1080px){
+ .topbar .topbar-nav{display:none}
+ .topbar .lang-switch{margin-left:auto}
+ .mobile-nav{display:block;position:relative;flex-shrink:0;z-index:51}
+ .mobile-nav summary{
+   display:grid;place-items:center;cursor:pointer;user-select:none;
+   padding:0 14px;min-height:42px;border:1px solid #89b9b6;
+   border-radius:999px;font-size:12px;font-weight:700;
+   list-style:none;
+ }
+ .mobile-nav summary::-webkit-details-marker{display:none}
+ .mobile-nav[open] summary{background:#d7f0e9;color:#092431}
+ .mobile-nav nav{
+   position:absolute;display:grid;gap:0;right:0;top:calc(100% + 11px);
+   z-index:60;min-width:195px;max-width:min(85vw,280px);
+   margin:0;padding:9px;background:#f8fcf9;color:#092431;
+   border:1px solid #d0e2dc;box-shadow:0 17px 40px #001d2740;
+   border-radius:14px;
+ }
+ .mobile-nav nav a{
+   padding:11px 12px;font-size:14px;text-decoration:none;
+   border-radius:9px;white-space:nowrap;
+ }
+ .mobile-nav nav a:hover,.mobile-nav nav a:focus-visible{background:#d7f0e9}
+ body.is-deep .mobile-nav summary{border-color:#8ac5bd;color:#e3f8f3}
+ body.is-deep .mobile-nav[open] summary{color:#092431}
+}
+@media(max-width:560px){
+ .topbar{gap:8px}
+ .topbar .lang-switch{padding-left:8px;gap:4px;margin-left:auto;font-size:11px}
+ .topbar .lang-switch a{min-width:26px}
+ .mobile-nav summary{padding:0 10px}
+ .site-footer{padding:25px 19px;align-items:flex-start;flex-direction:column;gap:12px}
+ .site-footer nav{gap:13px}
+ .open-source-note{margin-top:32px;font-size:13px;padding-top:20px}
+ .closing-links{gap:12px}
+ .closing-footnote{padding-top:26px}
+}
+@media(prefers-reduced-motion:reduce){
+ .mobile-nav nav{transition:none}
+}
