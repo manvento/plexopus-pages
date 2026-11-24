@@ -149,7 +149,7 @@ try {
       assert.equal(await page.locator('#studio-stage').getAttribute('data-studio-mode'),'build');
       assert.equal(await page.locator('.studio-draft-connection').getAttribute('d'),'M169 135L404 98');
       assert.equal(await page.locator('#studio-fact-a').innerText(),'S1 → J4');
-      assert.equal(await page.locator('.studio-build-link-label').innerText(),'S1 → J4');
+      assert.equal((await page.locator('.studio-build-link-label').textContent()).trim(),'S1 → J4');
       const picks=await page.locator('.studio-build-picks circle').evaluateAll(xs=>
         xs.map(el=>[el.getAttribute('cx'),el.getAttribute('cy')]));
       assert.deepEqual(picks,[['169','135'],['404','98']]);
