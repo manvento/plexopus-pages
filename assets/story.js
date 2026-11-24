@@ -57,7 +57,7 @@ const storyMessages = [
   "La risposta arriva direttamente nella conversazione: dialogare con la rete diventa immediato."
 ];
 if (isEnglish) {
-  storyMessages.splice(0, storyMessages.length, [
+  storyMessages.splice(0, storyMessages.length, ...[
   "Through MCP, a compatible AI assistant can ask Plexopus about your network.",
   "Ask a question in plain language, without knowing platform commands.",
   "MCP calls the network analysis tools according to permissions and available data.",
