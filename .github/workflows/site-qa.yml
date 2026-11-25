@@ -1,0 +1,55 @@
+name: Plexopus official website — EN/IT browser QA
+
+on:
+  push:
+    branches:
+      - feature/website-scrollytelling-official
+    paths:
+      - 'index.html'
+      - 'it/index.html'
+      - 'assets/story*'
+      - 'qa/site-smoke.mjs'
+      - '.github/workflows/site-qa.yml'
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'it/index.html'
+      - 'assets/story*'
+      - 'qa/site-smoke.mjs'
+      - '.github/workflows/site-qa.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: plexopus-official-site-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  browser-smoke:
+    name: Official site browser smoke (EN/IT)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Playwright for testing only
+        run: npm install --no-save --no-package-lock --no-audit --no-fund playwright@1.56.1
+
+      - name: Test English and Italian homepages
+        run: node qa/site-smoke.mjs
+
+      - name: Upload responsive screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-site-responsive-screenshots
+          path: qa/screenshots/
+          if-no-files-found: ignore
+          retention-days: 7
